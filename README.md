@@ -1,5 +1,1 @@
-# Awesome Counter
-
-Build status:
-
-![master status](https://travis-ci.com/ingjohnguerrero/awesome_counter.svg?branch=master)
+# Awesome Counter | [![Build Status](https://travis-ci.com/ingjohnguerrero/awesome_counter.svg?branch=master)](https://travis-ci.com/ingjohnguerrero/awesome_counter) [![Build Status](https://travis-ci.com/ingjohnguerrero/awesome_counter.svg?branch=develop)](https://travis-ci.com/ingjohnguerrero/awesome_counter)
