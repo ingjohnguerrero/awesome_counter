@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4129849A25760EC1008B2E5E /* CounterColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4129849925760EC1008B2E5E /* CounterColors.xcassets */; };
 		417A832C25761E5800794AA1 /* RectButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A832B25761E5800794AA1 /* RectButton.swift */; };
+		417A83692576228400794AA1 /* WelcomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A83672576228400794AA1 /* WelcomeTableViewCell.swift */; };
+		417A836A2576228400794AA1 /* WelcomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417A83682576228400794AA1 /* WelcomeTableViewCell.xib */; };
 		41F24C2C25759C2F003B4CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C2B25759C2F003B4CEE /* AppDelegate.swift */; };
 		41F24C2E25759C2F003B4CEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C2D25759C2F003B4CEE /* SceneDelegate.swift */; };
 		41F24C3025759C2F003B4CEE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C2F25759C2F003B4CEE /* ViewController.swift */; };
@@ -61,6 +63,8 @@
 		4154746B25761B8900B1B553 /* SF-Pro-Display-RegularItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-RegularItalic.otf"; sourceTree = "<group>"; };
 		4154746C25761B8900B1B553 /* SF-Pro-Display-SemiboldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-SemiboldItalic.otf"; sourceTree = "<group>"; };
 		417A832B25761E5800794AA1 /* RectButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectButton.swift; sourceTree = "<group>"; };
+		417A83672576228400794AA1 /* WelcomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTableViewCell.swift; sourceTree = "<group>"; };
+		417A83682576228400794AA1 /* WelcomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeTableViewCell.xib; sourceTree = "<group>"; };
 		41F24C2825759C2F003B4CEE /* Awesome Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Counter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F24C2B25759C2F003B4CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41F24C2D25759C2F003B4CEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -151,6 +155,15 @@
 			path = Controls;
 			sourceTree = "<group>";
 		};
+		417A83662576226400794AA1 /* CellPrototypes */ = {
+			isa = PBXGroup;
+			children = (
+				417A83672576228400794AA1 /* WelcomeTableViewCell.swift */,
+				417A83682576228400794AA1 /* WelcomeTableViewCell.xib */,
+			);
+			path = CellPrototypes;
+			sourceTree = "<group>";
+		};
 		41F24C1F25759C2F003B4CEE = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +238,7 @@
 		41F24C7F25760748003B4CEE /* WelcomeView */ = {
 			isa = PBXGroup;
 			children = (
+				417A83662576226400794AA1 /* CellPrototypes */,
 				41F24C2F25759C2F003B4CEE /* ViewController.swift */,
 				41F24C3125759C2F003B4CEE /* Main.storyboard */,
 			);
@@ -339,6 +353,7 @@
 				4129849A25760EC1008B2E5E /* CounterColors.xcassets in Resources */,
 				41F24C3825759C31003B4CEE /* Assets.xcassets in Resources */,
 				41F24C3325759C2F003B4CEE /* Main.storyboard in Resources */,
+				417A836A2576228400794AA1 /* WelcomeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +382,7 @@
 				41F24C3025759C2F003B4CEE /* ViewController.swift in Sources */,
 				41F24C2C25759C2F003B4CEE /* AppDelegate.swift in Sources */,
 				417A832C25761E5800794AA1 /* RectButton.swift in Sources */,
+				417A83692576228400794AA1 /* WelcomeTableViewCell.swift in Sources */,
 				41F24C2E25759C2F003B4CEE /* SceneDelegate.swift in Sources */,
 				41F24C6F25760414003B4CEE /* String+localization.swift in Sources */,
 				41F24C7725760627003B4CEE /* UIKit+XIBLocalizable.swift in Sources */,
