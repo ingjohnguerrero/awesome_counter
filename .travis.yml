@@ -1,6 +1,14 @@
 os: osx
 osx_image: xcode12.2
 language: swift
-xcode_project: Awesome Counter/Awesome Counter.xcodeproj # path to your xcodeproj folder
+xcode_project: Awesome Counter/Awesome Counter.xcodeproj
 xcode_scheme: Awesome Counter
 xcode_destination: platform=iOS Simulator,OS=14.2,name=iPhone 11
+
+env:
+  global:
+    secure: Vx9fffz1cgHIZrI9FBGJ0KKCDEqSpfFEQ4mQ2F3Vegt4ewiqwR9bIV2gZH6FcLt+lXSTufWyL+Qbam8N9Mrza4AH5HnkqzOnPcsBt4rOCr7TD7/Gjto0EN94nj0Fyf9wFPwmSgCuXAlC2b6zq0VpaAWu2Oo5wy/cYiswL/vv0hmCTuZGMa6S9sWHDXybLhzaBcH7x3oYlL6JEE2wQw6Qbjdp6evsBlTg3w6DjXYnSvXu+7j48wdzR3/8kiQaag/aug6MjWkNpxdwK4zoodjErFTvkzepbYZAsAUis9BDxzkFRgrW0/aCsjhtjGouE6b/v2gCIqDO3k/WE6BDRb5kRPPpE1tdC7QyVg7vW+h9S3Ghmkd47qxPXBNDzsvvQyN2zniiomH4ksOHN+icZKclgJT9Qiq6UTKu/XewGGoz+WeMvMpy1LVZuzVoulvg4Kiz+rxrkYJQ2w8HERlsm9edwRlFLJoFdHJDepFaK0Gh4+3GlGPbReBNPBzezVOBMlqDtLq+a716mnqubBpQu1wTzEXjTX1t2W9YOQ+ArPNrxFCu/FClxlxhaZVF4Ua6pO5aSwEe4jr4usen0W6z1/NcE5jkndnYvzRknl/i6mrZW1eoYpznUUGv73Zb/769uz7i4J/HOWBeb5Yw7OR7GAJQRJ8DmB+h8wYMv4kelQEn7/g=
+
+addons:
+  sonarcloud:
+    organization: "ingjohnguerrero"
