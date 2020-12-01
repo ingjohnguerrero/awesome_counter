@@ -12,3 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Changelog
 - Add Travis ci integration
 - Add Sonar Cloud to the project
+- Add splash view to project
+- Add Color assets
+- Add icon assets
+- Add fonts
