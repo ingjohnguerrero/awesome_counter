@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="zIc-eW-6fX">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Heavy.otf">
+            <string>SFProDisplay-Heavy</string>
+        </array>
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Welcome User View Controller-->
+        <scene sceneID="XJ1-QA-Nrj">
+            <objects>
+                <viewController storyboardIdentifier="WelcomeUserViewController" id="zIc-eW-6fX" customClass="WelcomeUserViewController" customModule="Awesome_Counter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z2g-4m-atm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="s0T-FB-bgb">
+                                <rect key="frame" x="39" y="83" width="336" height="82.333333333333314"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO6-zi-kvN">
+                                        <rect key="frame" x="0.0" y="0.0" width="336" height="38.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Heavy" family="SF Pro Display" pointSize="33"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Counters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLn-nm-zfu">
+                                        <rect key="frame" x="0.0" y="43.666666666666671" width="336" height="38.666666666666671"/>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Heavy" family="SF Pro Display" pointSize="33"/>
+                                        <color key="textColor" red="0.93333333330000001" green="0.25882352939999997" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FdL-H0-ExP" customClass="RoundedButton" customModule="Awesome_Counter" customModuleProvider="target">
+                                <rect key="frame" x="39" y="795" width="336" height="57"/>
+                                <color key="backgroundColor" name="secondaryLabel"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="57" id="q0H-1R-ux6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An example app that syncs to a Node.js server running on your Mac." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G90-F9-lhq">
+                                <rect key="frame" x="39" y="182" width="336" height="39.666666666666657"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VPu-kP-8u6">
+                                <rect key="frame" x="39" y="266.66666666666674" width="336" height="508.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="zIc-eW-6fX" id="BlZ-LT-8hd"/>
+                                    <outlet property="delegate" destination="zIc-eW-6fX" id="RcX-zK-9VT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="3pi-N7-nbV"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="FdL-H0-ExP" firstAttribute="trailing" secondItem="s0T-FB-bgb" secondAttribute="trailing" id="1Fh-cu-vEs"/>
+                            <constraint firstItem="FdL-H0-ExP" firstAttribute="top" secondItem="VPu-kP-8u6" secondAttribute="bottom" constant="20" id="AJQ-iu-9Et"/>
+                            <constraint firstItem="VPu-kP-8u6" firstAttribute="top" secondItem="G90-F9-lhq" secondAttribute="bottom" constant="45" id="JDj-4V-X18"/>
+                            <constraint firstItem="VPu-kP-8u6" firstAttribute="trailing" secondItem="s0T-FB-bgb" secondAttribute="trailing" id="PXR-aC-S60"/>
+                            <constraint firstItem="G90-F9-lhq" firstAttribute="top" secondItem="s0T-FB-bgb" secondAttribute="bottom" constant="16.670000000000002" id="UYr-aO-J0N"/>
+                            <constraint firstItem="G90-F9-lhq" firstAttribute="trailing" secondItem="s0T-FB-bgb" secondAttribute="trailing" id="bOB-qe-6QP"/>
+                            <constraint firstItem="s0T-FB-bgb" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" constant="39" id="c3e-y4-qxh"/>
+                            <constraint firstAttribute="trailing" secondItem="s0T-FB-bgb" secondAttribute="trailing" constant="39" id="dhr-DC-MSP"/>
+                            <constraint firstItem="s0T-FB-bgb" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" constant="39" id="kSo-eB-TVs"/>
+                            <constraint firstItem="FdL-H0-ExP" firstAttribute="leading" secondItem="s0T-FB-bgb" secondAttribute="leading" id="so1-s4-nQ1"/>
+                            <constraint firstItem="G90-F9-lhq" firstAttribute="leading" secondItem="s0T-FB-bgb" secondAttribute="leading" id="uzL-2o-r3d"/>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="bottom" secondItem="FdL-H0-ExP" secondAttribute="bottom" constant="10" id="v2W-Ke-ZUk"/>
+                            <constraint firstItem="VPu-kP-8u6" firstAttribute="leading" secondItem="s0T-FB-bgb" secondAttribute="leading" id="ykf-Is-64g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="appNameLabel" destination="fLn-nm-zfu" id="X04-Zy-5F4"/>
+                        <outlet property="continueButton" destination="FdL-H0-ExP" id="5HA-8T-18Z"/>
+                        <outlet property="descriptionLabel" destination="G90-F9-lhq" id="px6-qK-AVC"/>
+                        <outlet property="tableView" destination="VPu-kP-8u6" id="28T-Eq-eL1"/>
+                        <outlet property="titleLabel" destination="ZO6-zi-kvN" id="0oG-RF-r8g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rle-ol-2Ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="905" y="301"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="secondaryLabel">
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

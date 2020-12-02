@@ -16,6 +16,9 @@ class WelcomeTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
 
+    // MARK: - Private properties -
+    private var cellData: (color: UIColor, imageName: String, title: String, description: String)!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +28,16 @@ class WelcomeTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+
+    func configureCell(with cellData: WelcomeUserCellTuple) {
+        self.cellData = cellData
+        iconImageView.image = UIImage(systemName: cellData.imageName)
+        titleLabel.text = cellData.title
+        descriptionLabel.text = cellData.description
+        iconContainerView.backgroundColor = cellData.color
+        iconContainerView.layer.borderWidth = 1.0
+        iconContainerView.layer.borderColor = cellData.color.cgColor
     }
     
 }
