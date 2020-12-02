@@ -6,17 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-#### [ Welcome View ]
+### [ Welcome View ]
 
-### Added
+#### Added
 
 * Add VIPER module
 * Add unit tests for module
 * Add Rounded corner button
 
-#### [ Project Setup ]
+### [ Project Setup ]
 
-### Added
+#### Added
 
 - Add XCode project
 - Add Changelog
