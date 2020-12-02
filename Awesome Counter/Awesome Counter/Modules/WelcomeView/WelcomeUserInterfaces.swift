@@ -13,6 +13,7 @@ import UIKit
 typealias WelcomeUserCellTuple = (color: UIColor, imageName: String, title: String, description: String)
 
 protocol WelcomeUserWireframeInterface: WireframeInterface {
+    func goToMainScreen()
 }
 
 protocol WelcomeUserViewInterface: ViewInterface {
@@ -22,4 +23,5 @@ protocol WelcomeUserViewInterface: ViewInterface {
 protocol WelcomeUserPresenterInterface: PresenterInterface {
     var tupleArray: [WelcomeUserCellTuple] { get }
     func viewDidLoad()
+    func goToMainScreen()
 }

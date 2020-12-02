@@ -53,6 +53,9 @@
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="onContinueButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="Mya-n3-nWo"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An example app that syncs to a Node.js server running on your Mac." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G90-F9-lhq">
                                 <rect key="frame" x="39" y="184" width="336" height="40.666666666666657"/>
@@ -65,7 +68,6 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="zIc-eW-6fX" id="BlZ-LT-8hd"/>
-                                    <outlet property="delegate" destination="zIc-eW-6fX" id="RcX-zK-9VT"/>
                                 </connections>
                             </tableView>
                         </subviews>

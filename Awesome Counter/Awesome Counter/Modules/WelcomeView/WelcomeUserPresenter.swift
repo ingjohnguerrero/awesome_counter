@@ -28,6 +28,7 @@ final class WelcomeUserPresenter {
 // MARK: - Extensions -
 
 extension WelcomeUserPresenter: WelcomeUserPresenterInterface {
+
     var tupleArray: [WelcomeUserCellTuple] {
         return [
             (color: #colorLiteral(red: 1, green: 0.231372549, blue: 0.1882352941, alpha: 1), imageName: "42.circle.fill", title: "Add almost anything", description: "Capture cups of lattes, frapuccinos, or anything else that can be counted."),
@@ -38,6 +39,10 @@ extension WelcomeUserPresenter: WelcomeUserPresenterInterface {
 
     func viewDidLoad() {
         view.setTableView(with: tupleArray)
+    }
+
+    func goToMainScreen() {
+        wireframe.goToMainScreen()
     }
 
 }
