@@ -49,6 +49,11 @@ class MainScreenTests: XCTestCase {
 //        XCTAssertTrue(editButtonIsSubView)
 //    }
 
+    func test_hasCounterLabel() {
+        let counterLabelIsSubView = view.counterLabel?.isDescendant(of: view.view) ?? false
+        XCTAssertTrue(counterLabelIsSubView)
+    }
+
     func test_hasAddButton() {
         let addButtonIsSubView = view.addButton?.isDescendant(of: view.view) ?? false
     }

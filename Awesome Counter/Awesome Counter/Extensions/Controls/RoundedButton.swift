@@ -69,7 +69,7 @@ class RoundedButton: UIButton {
 
     override open var isHighlighted: Bool {
         didSet {
-            backgroundColor = isHighlighted ? buttonBorderColor : UIColor.white
+            backgroundColor = isHighlighted ? buttonBorderColor : buttonBackgroundColor
         }
     }
 

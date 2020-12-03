@@ -30,4 +30,11 @@ final class MainScreenPresenter {
 // MARK: - Extensions -
 
 extension MainScreenPresenter: MainScreenPresenterInterface {
+    func viewDidLoad() {
+        view.startLoading()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
+            self.view.finishLoading()
+            self.view.setEmptyView()
+        }
+    }
 }

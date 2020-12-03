@@ -14,9 +14,13 @@ protocol MainScreenWireframeInterface: WireframeInterface {
 }
 
 protocol MainScreenViewInterface: ViewInterface {
+    func startLoading()
+    func finishLoading()
+    func setEmptyView()
 }
 
 protocol MainScreenPresenterInterface: PresenterInterface {
+    func viewDidLoad()
 }
 
 protocol MainScreenInteractorInterface: InteractorInterface {

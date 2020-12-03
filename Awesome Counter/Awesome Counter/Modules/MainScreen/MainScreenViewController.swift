@@ -17,8 +17,10 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var counterLabel: UILabel!
 
 
     // MARK: - Public properties -
@@ -29,6 +31,7 @@ final class MainScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewDidLoad()
     }
 
 }
@@ -36,4 +39,18 @@ final class MainScreenViewController: UIViewController {
 // MARK: - Extensions -
 
 extension MainScreenViewController: MainScreenViewInterface {
+    func startLoading() {
+        activityIndicatorView.startAnimating()
+        tableView.isHidden = true
+        emptyView.isHidden = true
+    }
+
+    func finishLoading() {
+        activityIndicatorView.stopAnimating()
+    }
+
+    func setEmptyView() {
+        tableView.isHidden = true
+        emptyView.isHidden = false
+    }
 }
