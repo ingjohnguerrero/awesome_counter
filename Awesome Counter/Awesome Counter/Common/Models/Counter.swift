@@ -11,4 +11,12 @@ struct Counter {
     var id: UInt = 0
     var title: String = ""
     var count: UInt = 0
+
+    mutating func incrementCount() {
+        count += 1
+    }
+
+    mutating func decrementCount() {
+        count -= 1
+    }
 }

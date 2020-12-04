@@ -12,6 +12,8 @@
 		415BA2062579E8A600EB3D68 /* MainScreenDataProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA2052579E8A600EB3D68 /* MainScreenDataProviderTests.swift */; };
 		415BA2112579FA4900EB3D68 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA2102579FA4900EB3D68 /* CounterTests.swift */; };
 		415BA2192579FB1A00EB3D68 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA2182579FB1A00EB3D68 /* Counter.swift */; };
+		415BA21E257A94E700EB3D68 /* MainScreenItemManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA21D257A94E700EB3D68 /* MainScreenItemManagerTests.swift */; };
+		415BA224257A955400EB3D68 /* CounterItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA223257A955400EB3D68 /* CounterItemManager.swift */; };
 		417A832C25761E5800794AA1 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A832B25761E5800794AA1 /* RoundedButton.swift */; };
 		417A83692576228400794AA1 /* WelcomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A83672576228400794AA1 /* WelcomeTableViewCell.swift */; };
 		417A836A2576228400794AA1 /* WelcomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417A83682576228400794AA1 /* WelcomeTableViewCell.xib */; };
@@ -106,6 +108,8 @@
 		415BA2052579E8A600EB3D68 /* MainScreenDataProviderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenDataProviderTests.swift; sourceTree = "<group>"; };
 		415BA2102579FA4900EB3D68 /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
 		415BA2182579FB1A00EB3D68 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
+		415BA21D257A94E700EB3D68 /* MainScreenItemManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenItemManagerTests.swift; sourceTree = "<group>"; };
+		415BA223257A955400EB3D68 /* CounterItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterItemManager.swift; sourceTree = "<group>"; };
 		417A832B25761E5800794AA1 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		417A83672576228400794AA1 /* WelcomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTableViewCell.swift; sourceTree = "<group>"; };
 		417A83682576228400794AA1 /* WelcomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 			children = (
 				41CAD5842578531D00073115 /* MainScreenTests.swift */,
 				415BA2052579E8A600EB3D68 /* MainScreenDataProviderTests.swift */,
+				415BA21D257A94E700EB3D68 /* MainScreenItemManagerTests.swift */,
 			);
 			path = MainScreen;
 			sourceTree = "<group>";
@@ -245,6 +250,7 @@
 		415BA20F2579F26200EB3D68 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				415BA223257A955400EB3D68 /* CounterItemManager.swift */,
 				415BA2182579FB1A00EB3D68 /* Counter.swift */,
 			);
 			path = Models;
@@ -564,6 +570,7 @@
 			files = (
 				415BA1FD2579E3AE00EB3D68 /* MainScreenDataProvider.swift in Sources */,
 				41CAD57C257850CD00073115 /* MainScreenInteractor.swift in Sources */,
+				415BA224257A955400EB3D68 /* CounterItemManager.swift in Sources */,
 				415BA2192579FB1A00EB3D68 /* Counter.swift in Sources */,
 				41F24C3625759C2F003B4CEE /* Awesome_Counter.xcdatamodeld in Sources */,
 				41988E792577E8E100BE9966 /* InteractorInterface.swift in Sources */,
@@ -595,6 +602,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415BA21E257A94E700EB3D68 /* MainScreenItemManagerTests.swift in Sources */,
 				41CAD5852578531D00073115 /* MainScreenTests.swift in Sources */,
 				41F24C4625759C31003B4CEE /* Awesome_CounterTests.swift in Sources */,
 				41988E902577EB9500BE9966 /* WelcomeUserTests.swift in Sources */,
