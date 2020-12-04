@@ -57,4 +57,12 @@ class MainScreenTests: XCTestCase {
     func test_hasAddButton() {
         let addButtonIsSubView = view.addButton?.isDescendant(of: view.view) ?? false
     }
+
+    func test_LoadingView_SetsTableViewDataSource() {
+        XCTAssertTrue(view.tableView.dataSource is MainScreenDataProvider)
+    }
+
+    func test_LoadingView_SetsTableViewDelegate() {
+        XCTAssertTrue(view.tableView.delegate is MainScreenDataProvider)
+    }
 }

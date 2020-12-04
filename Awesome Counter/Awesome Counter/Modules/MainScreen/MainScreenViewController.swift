@@ -17,6 +17,7 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var addButton: UIButton!
@@ -29,9 +30,15 @@ final class MainScreenViewController: UIViewController {
 
     // MARK: - Lifecycle -
 
+    fileprivate func setTableViewDataProvider() {
+        tableView.dataSource = dataProvider
+        tableView.delegate = dataProvider
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        setTableViewDataProvider()
     }
 
 }
