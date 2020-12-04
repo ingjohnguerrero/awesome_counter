@@ -39,4 +39,17 @@ class MainScreenItemManagerTests: XCTestCase {
         XCTAssertEqual(sut.itemsCount, 0)
     }
 
+    func test_RemoveAll_ResultsInCountBeZero() {
+
+        let counter = Counter(id: 0, title: "Beers", count: 2)
+        sut.addItem(counter)
+
+
+        XCTAssertEqual(sut.itemsCount, 1)
+
+        sut.removeAll()
+
+        XCTAssertEqual(sut.itemsCount, 0)
+    }
+
 }
