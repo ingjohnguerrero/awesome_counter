@@ -16,12 +16,8 @@ class CounterTableViewCellTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        let storyboard = UIStoryboard(name: "MainScreen", bundle: nil)
-        let controller = storyboard
-          .instantiateViewController(
-            withIdentifier: "MainScreenViewController")
-          as! MainScreenViewController
-
+        let wireframe = MainScreenWireframe()
+        let controller = wireframe.viewController as! MainScreenViewController
 
         controller.loadViewIfNeeded()
 
@@ -31,7 +27,7 @@ class CounterTableViewCellTests: XCTestCase {
 
 
         cell = tableView?.dequeueReusableCell(
-          withIdentifier: "MainScreenViewController",
+          withIdentifier: "CounterTableViewCell",
           for: IndexPath(row: 0, section: 0)) as! CounterTableViewCell
     }
 
@@ -41,6 +37,18 @@ class CounterTableViewCellTests: XCTestCase {
 
     func test_HasTitleLabel() {
         XCTAssert(cell.titleLabel.isDescendant(of: cell.contentView))
+    }
+
+    func test_HasCounterLabel() {
+        XCTAssert(cell.counterLabel.isDescendant(of: cell.contentView))
+    }
+
+    func test_HasIncrementButton() {
+        XCTAssert(cell.incrementButton.isDescendant(of: cell.contentView))
+    }
+
+    func test_HasDecrementButton() {
+        XCTAssert(cell.decrementButton.isDescendant(of: cell.contentView))
     }
 }
 

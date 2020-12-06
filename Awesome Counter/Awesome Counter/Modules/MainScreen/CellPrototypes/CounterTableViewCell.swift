@@ -9,6 +9,15 @@ import UIKit
 
 class CounterTableViewCell: UITableViewCell {
 
+    // MARK: - IBOutlets -
+
+    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var incrementButton: UIButton!
+    @IBOutlet weak var decrementButton: UIButton!
+    
+    // MARK: - Public methods -
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
