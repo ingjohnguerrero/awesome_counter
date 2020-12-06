@@ -15,6 +15,13 @@ class CounterItemManager: NSObject {
     /// Counter items in manager
     var itemsCount: Int { return itemArray.count }
 
+    var countedTimes: UInt {
+        let countedTimesReduced = itemArray.reduce(0) { (lastValue, currentCounter) -> UInt in
+            return lastValue + currentCounter.count
+        }
+        return countedTimesReduced
+    }
+
     // MARK: - Private properties -
 
     /// Array of user counters
@@ -31,6 +38,12 @@ class CounterItemManager: NSObject {
         itemArray.append(item)
     }
 
+    func item(at index: Int) -> Counter {
+        return itemArray[index]
+    }
+
+    /// Remove Item at given id
+    /// - Parameter id: id of item user want to remove
     func removeItem(byId id: UInt) {
         if let itemIndex = itemArray.firstIndex(where: { $0.id == id }) {
             itemArray.remove(at: itemIndex)

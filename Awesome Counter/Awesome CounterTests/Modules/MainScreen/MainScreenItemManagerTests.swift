@@ -33,6 +33,15 @@ class MainScreenItemManagerTests: XCTestCase {
         XCTAssertEqual(sut.itemsCount, 1)
     }
 
+    func test_ItemAt_ReturnsAddedItem() {
+      let item = Counter(id: 0, title: "Beers", count: 2)
+      sut.addItem(item)
+
+      let returnedItem = sut.item(at: 0)
+
+      XCTAssertEqual(returnedItem.title, item.title)
+    }
+
     func test_RemoveItem_ById() {
         sut.addItem(Counter(id: 0, title: "Beers", count: 2))
         sut.removeItem(byId: 0)
@@ -50,6 +59,16 @@ class MainScreenItemManagerTests: XCTestCase {
         sut.removeAll()
 
         XCTAssertEqual(sut.itemsCount, 0)
+    }
+
+    func test_CountedTimes_AllItems() {
+        let beerCounter = Counter(id: 0, title: "Beers", count: 2)
+        sut.addItem(beerCounter)
+
+        let coffeeCounter = Counter(id: 1, title: "Coffee cups", count: 3)
+        sut.addItem(coffeeCounter)
+
+        XCTAssertEqual(sut.countedTimes, 5)
     }
 
 }

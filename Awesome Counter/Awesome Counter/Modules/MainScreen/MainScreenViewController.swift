@@ -39,6 +39,7 @@ final class MainScreenViewController: UIViewController {
         super.viewDidLoad()
         presenter.viewDidLoad()
         setTableViewDataProvider()
+        registerTableViewCells()
     }
 
 }
@@ -59,5 +60,12 @@ extension MainScreenViewController: MainScreenViewInterface {
     func setEmptyView() {
         tableView.isHidden = true
         emptyView.isHidden = false
+    }
+}
+
+extension MainScreenViewController {
+
+    func registerTableViewCells() {
+        tableView.register(UINib(nibName: "CounterTableViewCell", bundle: nil), forCellReuseIdentifier: "CounterTableViewCell")
     }
 }
