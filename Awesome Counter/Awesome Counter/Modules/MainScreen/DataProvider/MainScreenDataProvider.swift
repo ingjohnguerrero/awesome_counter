@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSource {
+class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSource, ItemManagerSettable {
 
     var itemManager: CounterItemManager?
 
@@ -25,4 +25,8 @@ class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSour
 
         return cell
     }
+}
+
+@objc protocol ItemManagerSettable {
+  var itemManager: CounterItemManager? { get set }
 }

@@ -17,22 +17,25 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate)!
+    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate & ItemManagerSettable)!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var countersInformationLabel: UILabel!
 
 
     // MARK: - Public properties -
 
     var presenter: MainScreenPresenterInterface!
+    let itemManager = CounterItemManager()
 
     // MARK: - Lifecycle -
 
     fileprivate func setTableViewDataProvider() {
         tableView.dataSource = dataProvider
         tableView.delegate = dataProvider
+
+        dataProvider.itemManager = itemManager
     }
 
     override func viewDidLoad() {

@@ -11,7 +11,7 @@ class CounterTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets -
 
-    @IBOutlet weak var counterLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var incrementButton: UIButton!
     @IBOutlet weak var decrementButton: UIButton!
@@ -30,7 +30,8 @@ class CounterTableViewCell: UITableViewCell {
     }
 
     func configCell(with item: Counter) {
-        
+        countLabel.text = "\(item.count)"
+        titleLabel.text = item.title
     }
     
 }

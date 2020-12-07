@@ -50,7 +50,7 @@ class MainScreenTests: XCTestCase {
 //    }
 
     func test_hasCounterLabel() {
-        let counterLabelIsSubView = view.counterLabel?.isDescendant(of: view.view) ?? false
+        let counterLabelIsSubView = view.countersInformationLabel?.isDescendant(of: view.view) ?? false
         XCTAssertTrue(counterLabelIsSubView)
     }
 
@@ -65,5 +65,20 @@ class MainScreenTests: XCTestCase {
 
     func test_LoadingView_SetsTableViewDelegate() {
         XCTAssertTrue(view.tableView.delegate is MainScreenDataProvider)
+    }
+
+    func test_ViewDidLoad_SetsItemManagerToDataProvider() {
+      XCTAssertTrue(view.itemManager === view.dataProvider.itemManager)
+    }
+
+    func test_ReloadData_SetsCounterInformationLabel() {
+        let coffeCounter = Counter(id: 0, title: "Cups of coffee", count: 5)
+        let beerCounter = Counter(id: 1, title: "Glasses of beer", count: 6)
+        view.itemManager.addItem(coffeCounter)
+        view.itemManager.addItem(beerCounter)
+        let stringFormat = "%d items · Counted %d times"
+        let stringWithFormat = String(format: stringFormat, 2, 11)
+        view.countersInformationLabel.text = stringWithFormat
+        XCTAssertEqual(stringWithFormat, view.countersInformationLabel.text)
     }
 }

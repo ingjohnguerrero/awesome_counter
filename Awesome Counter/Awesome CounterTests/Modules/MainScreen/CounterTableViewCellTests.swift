@@ -40,7 +40,7 @@ class CounterTableViewCellTests: XCTestCase {
     }
 
     func test_HasCounterLabel() {
-        XCTAssert(cell.counterLabel.isDescendant(of: cell.contentView))
+        XCTAssert(cell.countLabel.isDescendant(of: cell.contentView))
     }
 
     func test_HasIncrementButton() {
@@ -49,6 +49,20 @@ class CounterTableViewCellTests: XCTestCase {
 
     func test_HasDecrementButton() {
         XCTAssert(cell.decrementButton.isDescendant(of: cell.contentView))
+    }
+
+    func test_ConfigCell_SetsTitle() {
+        let counter = Counter(id: 0, title: "Cups of coffee", count: 2)
+        cell.configCell(with: counter)
+
+        XCTAssertEqual(cell.titleLabel.text, counter.title)
+    }
+
+    func test_ConfigCell_SetsCount() {
+        let counter = Counter(id: 0, title: "Cups of coffee", count: 2)
+        cell.configCell(with: counter)
+
+        XCTAssertEqual(cell.countLabel.text, "\(counter.count)")
     }
 }
 
