@@ -9,7 +9,7 @@ import UIKit
 
 class WelcomeTableViewCell: UITableViewCell {
 
-    // MARK: -IBOutlets-
+    // MARK: - IBOutlets-
 
     @IBOutlet weak var iconContainerView: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -17,7 +17,7 @@ class WelcomeTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
 
     // MARK: - Private properties -
-    private var cellData: (color: UIColor, imageName: String, title: String, description: String)!
+    private var cellData: WelcomeCellType!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,7 +30,7 @@ class WelcomeTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configureCell(with cellData: WelcomeUserCellTuple) {
+    func configureCell(with cellData: WelcomeCellType) {
         self.cellData = cellData
         iconImageView.image = UIImage(systemName: cellData.imageName)
         titleLabel.text = cellData.title
@@ -39,5 +39,5 @@ class WelcomeTableViewCell: UITableViewCell {
         iconContainerView.layer.borderWidth = 1.0
         iconContainerView.layer.borderColor = cellData.color.cgColor
     }
-    
+
 }
