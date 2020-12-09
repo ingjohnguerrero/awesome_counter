@@ -14,7 +14,7 @@ class CounterTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        sut = Counter(id: 0, title: "counter", count: 1)
+        sut = Counter(id: "0", title: "counter", count: 1)
     }
 
     override func tearDownWithError() throws {
@@ -26,7 +26,7 @@ class CounterTests: XCTestCase {
     }
 
     func test_init_withCounterData() {
-        XCTAssertEqual(sut.id, 0)
+        XCTAssertEqual(sut.id, "0")
         XCTAssertEqual(sut.title, "counter")
         XCTAssertEqual(sut.count, 1)
     }

@@ -17,10 +17,14 @@ protocol MainScreenViewInterface: ViewInterface {
     func startLoading()
     func finishLoading()
     func setEmptyView()
+    func setContentView()
+    func setItemManager(_ itemManager: CounterItemManager)
+    func updateCounterInformation()
 }
 
 protocol MainScreenPresenterInterface: PresenterInterface {
     func viewDidLoad()
+    func viewDidAppear()
 }
 
 protocol MainScreenInteractorInterface: InteractorInterface {

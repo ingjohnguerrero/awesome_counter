@@ -27,29 +27,53 @@ final class MainScreenViewController: UIViewController {
     // MARK: - Public properties -
 
     var presenter: MainScreenPresenterInterface!
-    let itemManager = CounterItemManager()
+    var itemManager: CounterItemManager!
 
     // MARK: - Lifecycle -
+
+    fileprivate func setupItemManager() {
+        dataProvider.itemManager = itemManager
+        dataProvider.itemManager?.onItemAddedClosure = { [weak self] () -> Void in
+            self?.tableView.reloadData()
+            self?.countersInformationLabel.text = self?.itemManager.countersInformation
+        }
+    }
 
     fileprivate func setTableViewDataProvider() {
         tableView.dataSource = dataProvider
         tableView.delegate = dataProvider
 
-        dataProvider.itemManager = itemManager
+        setupItemManager()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        setTableViewDataProvider()
         registerTableViewCells()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+    
+    @IBAction func onAddButtonTapped(_ sender: Any) {
+        itemManager.addItem(Counter(id: "\(itemManager.itemsCount)", title: "Item \(itemManager.itemsCount)", count: 1))
+    }
 }
 
 // MARK: - Extensions -
 
 extension MainScreenViewController: MainScreenViewInterface {
+    func setContentView() {
+        defer {
+            updateCounterInformation()
+        }
+        tableView.reloadData()
+        tableView.isHidden = false
+        emptyView.isHidden = true
+    }
+
     func startLoading() {
         activityIndicatorView.startAnimating()
         tableView.isHidden = true
@@ -63,6 +87,16 @@ extension MainScreenViewController: MainScreenViewInterface {
     func setEmptyView() {
         tableView.isHidden = true
         emptyView.isHidden = false
+        countersInformationLabel.text = " . "
+    }
+
+    func setItemManager(_ itemManager: CounterItemManager) {
+        self.itemManager = itemManager
+        setTableViewDataProvider()
+    }
+
+    func updateCounterInformation() {
+        countersInformationLabel.text = itemManager.countersInformation
     }
 }
 

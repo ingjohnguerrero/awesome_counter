@@ -8,7 +8,7 @@
 import Foundation
 
 struct Counter {
-    var id: UInt = 0
+    var id: String = ""
     var title: String = ""
     var count: UInt = 0
 
@@ -17,6 +17,10 @@ struct Counter {
     }
 
     mutating func decrementCount() {
-        count -= 1
+        count = (count == 0) ? 0 : count - 1
+    }
+
+    func countString() -> String {
+        return "\(count)"
     }
 }

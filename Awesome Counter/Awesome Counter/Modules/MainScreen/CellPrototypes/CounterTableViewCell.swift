@@ -15,6 +15,10 @@ class CounterTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var incrementButton: UIButton!
     @IBOutlet weak var decrementButton: UIButton!
+
+    // MARK: - Private properties -
+
+    var counter: Counter!
     
     // MARK: - Public methods -
 
@@ -30,8 +34,26 @@ class CounterTableViewCell: UITableViewCell {
     }
 
     func configCell(with item: Counter) {
+        counter = item
         countLabel.text = "\(item.count)"
         titleLabel.text = item.title
     }
     
+    @IBAction func onIncrementButtonTapped(_ sender: Any) {
+        NotificationCenter.default.post(
+          name: NSNotification.Name("CounterIncrementedNotification"),
+          object: self,
+            userInfo: ["counterId": counter.id])
+        counter.incrementCount()
+        countLabel.text = counter.countString()
+    }
+
+    @IBAction func onDecrementButtonTapped(_ sender: Any) {
+        NotificationCenter.default.post(
+          name: NSNotification.Name("CounterDecrementedNotification"),
+          object: self,
+            userInfo: ["counterId": counter.id])
+        counter.decrementCount()
+        countLabel.text = counter.countString()
+    }
 }

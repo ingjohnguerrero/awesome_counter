@@ -17,6 +17,7 @@ final class MainScreenPresenter {
     private unowned let view: MainScreenViewInterface
     private let interactor: MainScreenInteractorInterface
     private let wireframe: MainScreenWireframeInterface
+    private let itemManager: CounterItemManager!
 
     // MARK: - Lifecycle -
 
@@ -24,6 +25,11 @@ final class MainScreenPresenter {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        self.itemManager = CounterItemManager()
+    }
+
+    deinit {
+        removeNotificationObserver()
     }
 }
 
@@ -31,10 +37,49 @@ final class MainScreenPresenter {
 
 extension MainScreenPresenter: MainScreenPresenterInterface {
     func viewDidLoad() {
-        view.startLoading()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3.0) {
-            self.view.finishLoading()
-            self.view.setEmptyView()
+        defer {
+            addNotificationObserver()
         }
+        view.startLoading()
+        view.setItemManager(itemManager)
+        // TODO: Remove me
+        view.setContentView()
+    }
+
+    func viewDidAppear() {
+        DispatchQueue.main.async { [weak self] in
+            self?.view.finishLoading()
+        }
+    }
+
+    fileprivate func removeNotificationObserver() {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(incrementCounter(sender:)),
+            name: NSNotification.Name("CounterIncrementedNotification"),
+            object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(decrementCounter(sender:)),
+            name: NSNotification.Name("CounterDecrementedNotification"),
+            object: nil)
+    }
+
+    @objc func incrementCounter(sender: NSNotification) {
+        guard let counterId = sender.userInfo?["counterId"] as? String else
+        { fatalError() }
+        _ = itemManager.incrementCounter(byId: counterId )
+        view.updateCounterInformation()
+    }
+
+    @objc func decrementCounter(sender: NSNotification) {
+        guard let counterId = sender.userInfo?["counterId"] as? String else
+        { fatalError() }
+        _ = itemManager.decrementCounter(byId: counterId )
+        view.updateCounterInformation()
     }
 }

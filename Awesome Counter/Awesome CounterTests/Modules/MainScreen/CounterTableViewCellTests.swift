@@ -52,17 +52,47 @@ class CounterTableViewCellTests: XCTestCase {
     }
 
     func test_ConfigCell_SetsTitle() {
-        let counter = Counter(id: 0, title: "Cups of coffee", count: 2)
+        let counter = Counter(id: "0", title: "Cups of coffee", count: 2)
         cell.configCell(with: counter)
 
         XCTAssertEqual(cell.titleLabel.text, counter.title)
     }
 
     func test_ConfigCell_SetsCount() {
-        let counter = Counter(id: 0, title: "Cups of coffee", count: 2)
+        let counter = Counter(id: "0", title: "Cups of coffee", count: 2)
         cell.configCell(with: counter)
 
         XCTAssertEqual(cell.countLabel.text, "\(counter.count)")
+    }
+
+    func test_IncrementingACounter_SendsNotification() {
+        let item = Counter(id: "0", title: "Cups of coffee", count: 5)
+        cell.configCell(with: item)
+
+        let notificationCenter = NotificationCenter.default
+
+        let expectation = XCTNSNotificationExpectation(name: NSNotification.Name("CounterIncrementedNotification"), object: cell, notificationCenter: notificationCenter)
+
+        cell.incrementButton.sendActions(for: UIControl.Event.touchUpInside)
+
+        wait(for: [expectation], timeout: 3)
+
+        XCTAssertEqual("6", cell.countLabel.text)
+    }
+
+    func test_DecrementingACounter_SendsNotification() {
+        let item = Counter(id: "0", title: "Cups of coffee", count: 5)
+        cell.configCell(with: item)
+
+        let notificationCenter = NotificationCenter.default
+
+        let expectation = XCTNSNotificationExpectation(name: NSNotification.Name("CounterDecrementedNotification"), object: cell, notificationCenter: notificationCenter)
+
+        cell.decrementButton.sendActions(for: UIControl.Event.touchUpInside)
+
+        wait(for: [expectation], timeout: 3)
+
+        XCTAssertEqual("4", cell.countLabel.text)
     }
 }
 

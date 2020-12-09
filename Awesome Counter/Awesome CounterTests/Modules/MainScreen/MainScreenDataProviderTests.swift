@@ -41,34 +41,34 @@ class MainScreenDataProviderTests: XCTestCase {
     }
 
     func test_NumberOfRows_Section1_IsItemsCount() {
-      sut.itemManager?.addItem(Counter(id: 0, title: "Beers", count: 10))
+        sut.itemManager?.addItem(Counter(id: "0", title: "Beers", count: 10))
+        tableView.reloadData()
+        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
 
-      XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
+        sut.itemManager?.addItem(Counter(id: "1", title: "Coffe cups", count: 12))
 
-      sut.itemManager?.addItem(Counter(id: 1, title: "Coffe cups", count: 12))
+        tableView.reloadData()
 
-      tableView.reloadData()
-
-      XCTAssertEqual(tableView.numberOfRows(inSection: 0), 2)
+        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 2)
     }
 
     func test_CellForRow_ReturnsItemCell() {
 
-        sut.itemManager?.addItem(Counter(id: 0, title: "Beers", count: 10))
+        sut.itemManager?.addItem(Counter(id: "0", title: "Beers", count: 10))
 
         tableView.reloadData()
 
         let cell =
-        tableView.cellForRow(at: IndexPath(row: 0,
-                                           section: 0))
+            tableView.cellForRow(at: IndexPath(row: 0,
+                                               section: 0))
 
-      XCTAssertTrue(cell is CounterTableViewCell)
+        XCTAssertTrue(cell is CounterTableViewCell)
     }
 
     func test_CellForRow_DequeuesCellFromTableView() {
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
 
-        sut.itemManager?.addItem(Counter(id: 0, title: "Beers", count: 10))
+        sut.itemManager?.addItem(Counter(id: "0", title: "Beers", count: 10))
         mockTableView.reloadData()
 
         _ = mockTableView.cellForRow(at: IndexPath(row: 0, section: 0))
@@ -79,14 +79,14 @@ class MainScreenDataProviderTests: XCTestCase {
     func test_CellForRow_CallsConfigCell() {
         let mockTableView = MockTableView.mockTableView(withDataSource: sut)
 
-        let item = Counter(id: 0, title: "Beers", count: 10)
+        let item = Counter(id: "0", title: "Beers", count: 10)
         sut.itemManager?.addItem(item)
         mockTableView.reloadData()
 
         let cell = mockTableView
             .cellForRow(
                 at: IndexPath(row: 0, section: 0))
-                as! MockItemCell
+            as! MockItemCell
 
         XCTAssertEqual(cell.catchedItem?.title, item.title)
     }
@@ -96,41 +96,41 @@ class MainScreenDataProviderTests: XCTestCase {
 extension MainScreenDataProviderTests {
 
     class MockTableView: UITableView {
-      var cellGotDequeued = false
+        var cellGotDequeued = false
 
-      class func mockTableView(
-        withDataSource dataSource: UITableViewDataSource)
+        class func mockTableView(
+            withDataSource dataSource: UITableViewDataSource)
         -> MockTableView {
 
-          let mockTableView = MockTableView(
-            frame: CGRect(x: 0, y: 0, width: 320, height: 480),
-            style: .plain)
+            let mockTableView = MockTableView(
+                frame: CGRect(x: 0, y: 0, width: 320, height: 480),
+                style: .plain)
 
-          mockTableView.dataSource = dataSource
-          mockTableView.register(MockItemCell.self,
-                                 forCellReuseIdentifier: "CounterTableViewCell")
+            mockTableView.dataSource = dataSource
+            mockTableView.register(MockItemCell.self,
+                                   forCellReuseIdentifier: "CounterTableViewCell")
 
-          return mockTableView
-      }
+            return mockTableView
+        }
 
-      override func dequeueReusableCell(
-        withIdentifier identifier: String,
-        for indexPath: IndexPath) -> UITableViewCell {
+        override func dequeueReusableCell(
+            withIdentifier identifier: String,
+            for indexPath: IndexPath) -> UITableViewCell {
 
-        cellGotDequeued = true
+            cellGotDequeued = true
 
-        return super.dequeueReusableCell(withIdentifier: identifier,
-                                         for: indexPath)
-      }
+            return super.dequeueReusableCell(withIdentifier: identifier,
+                                             for: indexPath)
+        }
     }
 
     class MockItemCell : CounterTableViewCell {
-      var catchedItem: Counter?
+        var catchedItem: Counter?
 
 
-      override func configCell(with item: Counter) {
-        catchedItem = item
-      }
+        override func configCell(with item: Counter) {
+            catchedItem = item
+        }
     }
 
 }

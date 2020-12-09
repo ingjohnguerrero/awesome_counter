@@ -72,13 +72,47 @@ class MainScreenTests: XCTestCase {
     }
 
     func test_ReloadData_SetsCounterInformationLabel() {
-        let coffeCounter = Counter(id: 0, title: "Cups of coffee", count: 5)
-        let beerCounter = Counter(id: 1, title: "Glasses of beer", count: 6)
+        let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
+        let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
         view.itemManager.addItem(coffeCounter)
         view.itemManager.addItem(beerCounter)
         let stringFormat = "%d items · Counted %d times"
         let stringWithFormat = String(format: stringFormat, 2, 11)
-        view.countersInformationLabel.text = stringWithFormat
+
         XCTAssertEqual(stringWithFormat, view.countersInformationLabel.text)
     }
+
+    func test_IncrementCounter_SetsCounterInformationLabel() {
+        let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
+        let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
+        view.itemManager.addItem(coffeCounter)
+        view.itemManager.addItem(beerCounter)
+
+        NotificationCenter.default.post(
+          name: NSNotification.Name("CounterIncrementedNotification"),
+          object: self,
+            userInfo: ["counterId": coffeCounter.id])
+
+
+        let stringFormat = "%d items · Counted %d times"
+        let stringWithFormat = String(format: stringFormat, 2, 12)
+
+        XCTAssertEqual(stringWithFormat, view.itemManager.countersInformation)
+    }
+
+    func test_DecrementCounter_SetsCounterInformationLabel() {
+        let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
+        let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
+        view.itemManager.addItem(coffeCounter)
+        view.itemManager.addItem(beerCounter)
+
+        let cell = view.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CounterTableViewCell
+        cell.decrementButton.sendActions(for: UIControl.Event.touchUpInside)
+
+        let stringFormat = "%d items · Counted %d times"
+        let stringWithFormat = String(format: stringFormat, 2, 10)
+
+        XCTAssertEqual(stringWithFormat, view.countersInformationLabel.text)
+    }
+    
 }
