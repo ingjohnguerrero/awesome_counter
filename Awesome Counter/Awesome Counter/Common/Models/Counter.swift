@@ -11,13 +11,16 @@ struct Counter {
     var id: String = ""
     var title: String = ""
     var count: UInt = 0
+    var isCountZero: Bool {
+        return count < 1
+    }
 
     mutating func incrementCount() {
         count += 1
     }
 
     mutating func decrementCount() {
-        count = (count == 0) ? 0 : count - 1
+        count = (isCountZero) ? 0 : count - 1
     }
 
     func countString() -> String {
