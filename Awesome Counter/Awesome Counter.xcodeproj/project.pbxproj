@@ -60,6 +60,7 @@
 		41CAD57C257850CD00073115 /* MainScreenInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CAD576257850CD00073115 /* MainScreenInteractor.swift */; };
 		41CAD57D257850CD00073115 /* MainScreenWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CAD577257850CD00073115 /* MainScreenWireframe.swift */; };
 		41CAD5852578531D00073115 /* MainScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CAD5842578531D00073115 /* MainScreenTests.swift */; };
+		41DFA2B5258147AE00695D1B /* WelcomeCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFA2B4258147AE00695D1B /* WelcomeCellType.swift */; };
 		41F24C2C25759C2F003B4CEE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C2B25759C2F003B4CEE /* AppDelegate.swift */; };
 		41F24C2E25759C2F003B4CEE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C2D25759C2F003B4CEE /* SceneDelegate.swift */; };
 		41F24C3625759C2F003B4CEE /* Awesome_Counter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 41F24C3425759C2F003B4CEE /* Awesome_Counter.xcdatamodeld */; };
@@ -142,6 +143,7 @@
 		41CAD576257850CD00073115 /* MainScreenInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInteractor.swift; sourceTree = "<group>"; };
 		41CAD577257850CD00073115 /* MainScreenWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenWireframe.swift; sourceTree = "<group>"; };
 		41CAD5842578531D00073115 /* MainScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenTests.swift; sourceTree = "<group>"; };
+		41DFA2B4258147AE00695D1B /* WelcomeCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeCellType.swift; sourceTree = "<group>"; };
 		41F24C2825759C2F003B4CEE /* Awesome Counter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Awesome Counter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		41F24C2B25759C2F003B4CEE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		41F24C2D25759C2F003B4CEE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -347,6 +349,14 @@
 			path = MainScreen;
 			sourceTree = "<group>";
 		};
+		41DFA2B32581478E00695D1B /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				41DFA2B4258147AE00695D1B /* WelcomeCellType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		41F24C1F25759C2F003B4CEE = {
 			isa = PBXGroup;
 			children = (
@@ -425,6 +435,7 @@
 		41F24C7F25760748003B4CEE /* WelcomeView */ = {
 			isa = PBXGroup;
 			children = (
+				41DFA2B32581478E00695D1B /* Enums */,
 				417A83662576226400794AA1 /* CellPrototypes */,
 				41988E7D2577E92B00BE9966 /* WelcomeUser.storyboard */,
 				41988E7E2577E92B00BE9966 /* WelcomeUserInterfaces.swift */,
@@ -446,6 +457,7 @@
 				41F24C2425759C2F003B4CEE /* Sources */,
 				41F24C2525759C2F003B4CEE /* Frameworks */,
 				41F24C2625759C2F003B4CEE /* Resources */,
+				41DFA2AF2581269800695D1B /* Run Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -585,6 +597,27 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		41DFA2AF2581269800695D1B /* Run Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		41F24C2425759C2F003B4CEE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -614,6 +647,8 @@
 				41F24C7725760627003B4CEE /* UIKit+XIBLocalizable.swift in Sources */,
 				41AF03E62577F12400754913 /* WelcomeUserViewController+UITableViewDataSource.swift in Sources */,
 				41CAD57D257850CD00073115 /* MainScreenWireframe.swift in Sources */,
+				41AF03E62577F12400754913 /* WelcomeUser+UITableViewDataSource.swift in Sources */,
+				41DFA2B5258147AE00695D1B /* WelcomeCellType.swift in Sources */,
 				41988E842577E92B00BE9966 /* WelcomeUserInterfaces.swift in Sources */,
 				41CAD57B257850CD00073115 /* MainScreenViewController.swift in Sources */,
 				41988E862577E92B00BE9966 /* WelcomeUserViewController.swift in Sources */,

@@ -10,18 +10,16 @@
 
 import UIKit
 
-typealias WelcomeUserCellTuple = (color: UIColor, imageName: String, title: String, description: String)
-
 protocol WelcomeUserWireframeInterface: WireframeInterface {
     func goToMainScreen()
 }
 
 protocol WelcomeUserViewInterface: ViewInterface {
-    func setTableView(with tupleArray:[WelcomeUserCellTuple])
+    func setTableView(with cellTypeArray:[WelcomeCellType])
 }
 
 protocol WelcomeUserPresenterInterface: PresenterInterface {
-    var tupleArray: [WelcomeUserCellTuple] { get }
+    var cellTypeArray: [WelcomeCellType] { get }
     func viewDidLoad()
     func goToMainScreen()
 }

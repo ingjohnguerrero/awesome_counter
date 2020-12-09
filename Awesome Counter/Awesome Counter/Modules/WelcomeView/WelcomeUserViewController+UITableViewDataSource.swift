@@ -24,7 +24,7 @@ extension WelcomeUserViewController: UITableViewDataSource {
         }
 
         cell.configureCell(with: infoArray[indexPath.row])
-        
+
         return cell
     }
 }
