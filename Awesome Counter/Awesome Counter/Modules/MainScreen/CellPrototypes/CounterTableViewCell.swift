@@ -19,7 +19,7 @@ class CounterTableViewCell: UITableViewCell {
     // MARK: - Private properties -
 
     var counter: Counter!
-    
+
     // MARK: - Public methods -
 
     override func awakeFromNib() {
@@ -38,7 +38,7 @@ class CounterTableViewCell: UITableViewCell {
         countLabel.text = "\(item.count)"
         titleLabel.text = item.title
     }
-    
+
     @IBAction func onIncrementButtonTapped(_ sender: Any) {
         NotificationCenter.default.post(
           name: NSNotification.Name("CounterIncrementedNotification"),

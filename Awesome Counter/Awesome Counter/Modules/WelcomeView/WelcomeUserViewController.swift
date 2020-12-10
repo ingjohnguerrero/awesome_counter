@@ -43,7 +43,6 @@ final class WelcomeUserViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
-
     @IBAction func onContinueButtonTapped(_ sender: Any) {
         presenter.goToMainScreen()
     }

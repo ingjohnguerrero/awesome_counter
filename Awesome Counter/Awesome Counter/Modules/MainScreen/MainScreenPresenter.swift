@@ -36,6 +36,7 @@ final class MainScreenPresenter {
 // MARK: - Extensions -
 
 extension MainScreenPresenter: MainScreenPresenterInterface {
+
     func viewDidLoad() {
         defer {
             addNotificationObserver()
@@ -70,16 +71,15 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
     }
 
     @objc func incrementCounter(sender: NSNotification) {
-        guard let counterId = sender.userInfo?["counterId"] as? String else
-        { fatalError() }
+        guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
         _ = itemManager.incrementCounter(byId: counterId )
         view.updateCounterInformation()
     }
 
     @objc func decrementCounter(sender: NSNotification) {
-        guard let counterId = sender.userInfo?["counterId"] as? String else
-        { fatalError() }
+        guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
         _ = itemManager.decrementCounter(byId: counterId )
         view.updateCounterInformation()
     }
+
 }

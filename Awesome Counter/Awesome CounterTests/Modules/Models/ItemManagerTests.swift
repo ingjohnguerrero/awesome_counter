@@ -60,7 +60,6 @@ class ItemManagerTests: XCTestCase {
         let counter = Counter(id: "0", title: "Beers", count: 2)
         sut.addItem(counter)
 
-
         XCTAssertEqual(sut.itemsCount, 1)
 
         sut.removeAll()
@@ -109,6 +108,18 @@ class ItemManagerTests: XCTestCase {
         let counterCount = sut.decrementCounter(byId: "0")
 
         XCTAssertEqual(1, counterCount)
+    }
+
+    func test_SeachByTerm_FilterCounters() {
+        let beerCounter = Counter(id: "0", title: "Beers", count: 2)
+        sut.addItem(beerCounter)
+
+        let coffeeCounter = Counter(id: "1", title: "Coffee cups", count: 3)
+        sut.addItem(coffeeCounter)
+
+        let results = sut.search(byTerm: "beer")
+
+        XCTAssertEqual(results.count, 1)
     }
 
 }

@@ -91,6 +91,21 @@ class MainScreenDataProviderTests: XCTestCase {
         XCTAssertEqual(cell.catchedItem?.title, item.title)
     }
 
+    func test_SearchByTerms_UpdateCountersList() {
+        let item = Counter(id: "0", title: "Beers", count: 10)
+        sut.itemManager?.addItem(item)
+
+        let item1 = Counter(id: "1", title: "Cups of coffee", count: 5)
+        sut.itemManager?.addItem(item1)
+
+        tableView.reloadData()
+
+        sut.updateSearchTerm("beer")
+        tableView.reloadData()
+
+        XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
+    }
+
 }
 
 extension MainScreenDataProviderTests {
@@ -126,7 +141,6 @@ extension MainScreenDataProviderTests {
 
     class MockItemCell : CounterTableViewCell {
         var catchedItem: Counter?
-
 
         override func configCell(with item: Counter) {
             catchedItem = item

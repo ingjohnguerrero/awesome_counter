@@ -99,4 +99,12 @@ class CounterItemManager: NSObject {
         return itemArray[itemIndex].count
     }
 
+    /// Search counters by term
+    /// - Parameter term: key term for search
+    /// - Returns: array of counter containing the term
+    func search(byTerm term: String) -> [Counter] {
+        let results = itemArray.filter { $0.title.localizedCaseInsensitiveContains(term) }
+        return results
+    }
+
 }

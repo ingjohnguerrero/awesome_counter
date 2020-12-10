@@ -14,6 +14,7 @@
 		415BA2192579FB1A00EB3D68 /* Counter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA2182579FB1A00EB3D68 /* Counter.swift */; };
 		415BA21E257A94E700EB3D68 /* ItemManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA21D257A94E700EB3D68 /* ItemManagerTests.swift */; };
 		415BA224257A955400EB3D68 /* CounterItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415BA223257A955400EB3D68 /* CounterItemManager.swift */; };
+		41751E662582587300F2918D /* SearchableDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41751E652582587300F2918D /* SearchableDataProvider.swift */; };
 		417A832C25761E5800794AA1 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A832B25761E5800794AA1 /* RoundedButton.swift */; };
 		417A83692576228400794AA1 /* WelcomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 417A83672576228400794AA1 /* WelcomeTableViewCell.swift */; };
 		417A836A2576228400794AA1 /* WelcomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 417A83682576228400794AA1 /* WelcomeTableViewCell.xib */; };
@@ -115,6 +116,7 @@
 		415BA2182579FB1A00EB3D68 /* Counter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Counter.swift; sourceTree = "<group>"; };
 		415BA21D257A94E700EB3D68 /* ItemManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemManagerTests.swift; sourceTree = "<group>"; };
 		415BA223257A955400EB3D68 /* CounterItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterItemManager.swift; sourceTree = "<group>"; };
+		41751E652582587300F2918D /* SearchableDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchableDataProvider.swift; sourceTree = "<group>"; };
 		417A832B25761E5800794AA1 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		417A83672576228400794AA1 /* WelcomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeTableViewCell.swift; sourceTree = "<group>"; };
 		417A83682576228400794AA1 /* WelcomeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeTableViewCell.xib; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 		415BA20E2579F25900EB3D68 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				41751E642582585200F2918D /* Protocols */,
 				415BA20F2579F26200EB3D68 /* Models */,
 			);
 			path = Common;
@@ -266,6 +269,14 @@
 				415BA2182579FB1A00EB3D68 /* Counter.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		41751E642582585200F2918D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				41751E652582587300F2918D /* SearchableDataProvider.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		417A832A25761E2300794AA1 /* Controls */ = {
@@ -647,12 +658,13 @@
 				41F24C7725760627003B4CEE /* UIKit+XIBLocalizable.swift in Sources */,
 				41AF03E62577F12400754913 /* WelcomeUserViewController+UITableViewDataSource.swift in Sources */,
 				41CAD57D257850CD00073115 /* MainScreenWireframe.swift in Sources */,
-				41AF03E62577F12400754913 /* WelcomeUser+UITableViewDataSource.swift in Sources */,
+				41AF03E62577F12400754913 /* WelcomeUserViewController+UITableViewDataSource.swift in Sources */,
 				41DFA2B5258147AE00695D1B /* WelcomeCellType.swift in Sources */,
 				41988E842577E92B00BE9966 /* WelcomeUserInterfaces.swift in Sources */,
 				41CAD57B257850CD00073115 /* MainScreenViewController.swift in Sources */,
 				41988E862577E92B00BE9966 /* WelcomeUserViewController.swift in Sources */,
 				41988E762577E8E100BE9966 /* BaseWireframe.swift in Sources */,
+				41751E662582587300F2918D /* SearchableDataProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

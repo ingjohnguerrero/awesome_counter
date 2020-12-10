@@ -93,7 +93,6 @@ class MainScreenTests: XCTestCase {
           object: self,
             userInfo: ["counterId": coffeCounter.id])
 
-
         let stringFormat = "%d items · Counted %d times"
         let stringWithFormat = String(format: stringFormat, 2, 12)
 
@@ -114,5 +113,5 @@ class MainScreenTests: XCTestCase {
 
         XCTAssertEqual(stringWithFormat, view.countersInformationLabel.text)
     }
-    
+
 }

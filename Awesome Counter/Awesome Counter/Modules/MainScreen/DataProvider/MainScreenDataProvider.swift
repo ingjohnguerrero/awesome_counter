@@ -8,12 +8,21 @@
 import Foundation
 import UIKit
 
-class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSource, ItemManagerSettable {
+class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSource, ItemManagerSettable, SearchableDataProvider {
 
     var itemManager: CounterItemManager?
+    var searchTerm: String = ""
+    var isUserSearching: Bool {
+        !searchTerm.isEmpty
+    }
+    var tempSearchResults: [Counter] = []
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemManager?.itemsCount ?? 0
+        if isUserSearching {
+            return tempSearchResults.count
+        } else {
+            return itemManager?.itemsCount ?? 0
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -21,9 +30,18 @@ class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSour
             return UITableViewCell()
         }
 
-        cell.configCell(with: counterItem)
+        if isUserSearching {
+            cell.configCell(with: tempSearchResults[indexPath.row])
+        } else {
+            cell.configCell(with: counterItem)
+        }
 
         return cell
+    }
+
+    func updateSearchTerm(_ term: String) {
+        searchTerm = term
+        tempSearchResults = itemManager?.search(byTerm: searchTerm) ?? []
     }
 }
 

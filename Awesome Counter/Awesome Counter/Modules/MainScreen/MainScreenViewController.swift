@@ -17,12 +17,11 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate & ItemManagerSettable)!
+    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate & ItemManagerSettable & SearchableDataProvider)!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var countersInformationLabel: UILabel!
-
 
     // MARK: - Public properties -
 
@@ -56,9 +55,13 @@ final class MainScreenViewController: UIViewController {
         super.viewDidAppear(animated)
         presenter.viewDidAppear()
     }
-    
+
     @IBAction func onAddButtonTapped(_ sender: Any) {
-        itemManager.addItem(Counter(id: "\(itemManager.itemsCount)", title: "Item \(itemManager.itemsCount)", count: 1))
+        itemManager.addItem(
+            Counter(id: "\(itemManager.itemsCount)",
+                    title: "Item \(itemManager.itemsCount)",
+                    count: 1)
+        )
     }
 }
 
@@ -103,6 +106,16 @@ extension MainScreenViewController: MainScreenViewInterface {
 extension MainScreenViewController {
 
     func registerTableViewCells() {
-        tableView.register(UINib(nibName: "CounterTableViewCell", bundle: nil), forCellReuseIdentifier: "CounterTableViewCell")
+        tableView.register(
+            UINib(nibName: "CounterTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "CounterTableViewCell"
+        )
+    }
+}
+
+extension MainScreenViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        dataProvider.updateSearchTerm(searchText)
+        tableView.reloadData()
     }
 }

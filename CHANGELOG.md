@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Add TDD for MainScreen
 * Add Counter item manager with TDD
 * Add Counter Model
+* Add SearchBar functionality
 
 ### [ Swift lint ]
 

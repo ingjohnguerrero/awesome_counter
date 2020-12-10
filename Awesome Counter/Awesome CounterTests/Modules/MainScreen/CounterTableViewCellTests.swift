@@ -21,10 +21,8 @@ class CounterTableViewCellTests: XCTestCase {
 
         controller.loadViewIfNeeded()
 
-
         tableView = controller.tableView
         tableView?.dataSource = dataSource
-
 
         cell = tableView?.dequeueReusableCell(
           withIdentifier: "CounterTableViewCell",
@@ -99,20 +97,15 @@ class CounterTableViewCellTests: XCTestCase {
 extension CounterTableViewCellTests {
     class FakeDataSource: NSObject, UITableViewDataSource {
 
-
       func tableView(_ tableView: UITableView,
                      numberOfRowsInSection section: Int) -> Int {
-
 
         return 1
       }
 
-
-
       func tableView(_ tableView: UITableView,
                      cellForRowAt indexPath: IndexPath)
         -> UITableViewCell {
-
 
           return UITableViewCell()
       }
