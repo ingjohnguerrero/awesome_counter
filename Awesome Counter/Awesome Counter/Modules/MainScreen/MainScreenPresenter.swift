@@ -36,15 +36,17 @@ final class MainScreenPresenter {
 // MARK: - Extensions -
 
 extension MainScreenPresenter: MainScreenPresenterInterface {
-
     func viewDidLoad() {
         defer {
             addNotificationObserver()
         }
         view.startLoading()
         view.setItemManager(itemManager)
-        // TODO: Remove me
-        view.setContentView()
+        if itemManager.itemsCount > 0 {
+            view.setContentView()
+        } else {
+            view.setEmptyView()
+        }
     }
 
     func viewDidAppear() {
@@ -80,6 +82,12 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
         _ = itemManager.decrementCounter(byId: counterId )
         view.updateCounterInformation()
+    }
+
+    func presentAddItemModule() {
+        wireframe.navigate(to: MainScreenNavigationOption.addItem({ [weak self] (newCounter) in
+            self?.itemManager.addItem(newCounter)
+        }))
     }
 
 }

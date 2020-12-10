@@ -23,7 +23,11 @@ final class MainScreenWireframe: BaseWireframe {
         super.init(viewController: moduleViewController)
 
         let interactor = MainScreenInteractor()
-        let presenter = MainScreenPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
+        let presenter = MainScreenPresenter(
+            view: moduleViewController,
+            interactor: interactor,
+            wireframe: self
+        )
         moduleViewController.presenter = presenter
     }
 
@@ -32,4 +36,16 @@ final class MainScreenWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension MainScreenWireframe: MainScreenWireframeInterface {
+    func navigate(to option: MainScreenNavigationOption) {
+        switch option {
+        case .addItem(let onAddItemClosure):
+            presentAddItemModule(onAddItemClosure: onAddItemClosure)
+        }
+    }
+
+    func presentAddItemModule(onAddItemClosure: ((Counter) -> Void)) {
+        let wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
+        navigationController?.pushWireframe(wireframe)
+    }
+
 }

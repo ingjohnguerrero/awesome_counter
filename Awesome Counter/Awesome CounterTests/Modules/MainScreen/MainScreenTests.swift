@@ -30,7 +30,7 @@ class MainScreenTests: XCTestCase {
     }
 
     func test_hasSearchBox() {
-        let searchBarIsSubView = view.searchBar?.isDescendant(of: view.view) ?? false
+        let searchBarIsSubView = (view.searchBar != nil)
         XCTAssertTrue(searchBarIsSubView)
     }
 
