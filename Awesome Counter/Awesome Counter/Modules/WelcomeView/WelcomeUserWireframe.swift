@@ -37,4 +37,9 @@ final class WelcomeUserWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension WelcomeUserWireframe: WelcomeUserWireframeInterface {
+    func goToMainScreen() {
+        let wireframe = MainScreenWireframe()
+        wireframe.viewController.modalPresentationStyle = .fullScreen
+        viewController.presentWireframe(wireframe)
+    }
 }

@@ -36,4 +36,8 @@ extension WelcomeUserPresenter: WelcomeUserPresenterInterface {
         view.setTableView(with: cellTypeArray)
     }
 
+    func goToMainScreen() {
+        wireframe.goToMainScreen()
+    }
+
 }

@@ -11,6 +11,7 @@
 import UIKit
 
 protocol WelcomeUserWireframeInterface: WireframeInterface {
+    func goToMainScreen()
 }
 
 protocol WelcomeUserViewInterface: ViewInterface {
@@ -20,4 +21,5 @@ protocol WelcomeUserViewInterface: ViewInterface {
 protocol WelcomeUserPresenterInterface: PresenterInterface {
     var cellTypeArray: [WelcomeCellType] { get }
     func viewDidLoad()
+    func goToMainScreen()
 }
