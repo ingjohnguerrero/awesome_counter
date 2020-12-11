@@ -71,6 +71,8 @@ class MainScreenTests: XCTestCase {
         let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
         view.itemManager?.addItem(coffeCounter)
         view.itemManager?.addItem(beerCounter)
+        view.updateCountersInformation()
+        view.reloadTableView()
         let stringFormat = "%d items · Counted %d times"
         let stringWithFormat = String(format: stringFormat, 2, 11)
 
@@ -99,7 +101,7 @@ class MainScreenTests: XCTestCase {
         let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
         view.itemManager?.addItem(coffeCounter)
         view.itemManager?.addItem(beerCounter)
-
+        view.reloadTableView()
         guard let cell = view.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CounterTableViewCell else {
             XCTFail()
             return
@@ -116,6 +118,18 @@ class MainScreenTests: XCTestCase {
 
 extension MainScreenTests {
     class MockMainScreenInteraction: MainScreenInteractorInterface {
+        func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
         func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
             completion([], nil)
         }
