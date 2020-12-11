@@ -39,7 +39,8 @@ final class WelcomeUserWireframe: BaseWireframe {
 extension WelcomeUserWireframe: WelcomeUserWireframeInterface {
     func goToMainScreen() {
         let wireframe = MainScreenWireframe()
-        wireframe.viewController.modalPresentationStyle = .fullScreen
-        viewController.presentWireframe(wireframe)
+        let navController = UINavigationController(rootViewController: wireframe.viewController)
+        navController.modalPresentationStyle = .fullScreen
+        viewController.present(navController, animated:true, completion: nil)
     }
 }

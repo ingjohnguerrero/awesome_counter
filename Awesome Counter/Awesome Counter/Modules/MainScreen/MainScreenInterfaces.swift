@@ -10,7 +10,12 @@
 
 import UIKit
 
+enum MainScreenNavigationOption {
+    case addItem(_ onAddedItemClosure: ((Counter) -> Void))
+}
+
 protocol MainScreenWireframeInterface: WireframeInterface {
+    func navigate(to option: MainScreenNavigationOption)
 }
 
 protocol MainScreenViewInterface: ViewInterface {
@@ -25,6 +30,7 @@ protocol MainScreenViewInterface: ViewInterface {
 protocol MainScreenPresenterInterface: PresenterInterface {
     func viewDidLoad()
     func viewDidAppear()
+    func presentAddItemModule()
 }
 
 protocol MainScreenInteractorInterface: InteractorInterface {

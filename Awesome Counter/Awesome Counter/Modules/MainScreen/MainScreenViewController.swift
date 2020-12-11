@@ -15,9 +15,13 @@ final class MainScreenViewController: UIViewController {
     // MARK: - IBOutlets -
 
     @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var dataProvider: (UITableViewDataSource & UITableViewDelegate & ItemManagerSettable & SearchableDataProvider)!
+    @IBOutlet var dataProvider: (
+                                    UITableViewDataSource &
+                                    UITableViewDelegate &
+                                    ItemManagerSettable &
+                                    SearchableDataProvider
+                                )!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var addButton: UIButton!
@@ -27,14 +31,15 @@ final class MainScreenViewController: UIViewController {
 
     var presenter: MainScreenPresenterInterface!
     var itemManager: CounterItemManager!
+    var searchController = UISearchController(searchResultsController: nil)
+    lazy var searchBar: UISearchBar! = searchController.searchBar
 
     // MARK: - Lifecycle -
 
     fileprivate func setupItemManager() {
         dataProvider.itemManager = itemManager
         dataProvider.itemManager?.onItemAddedClosure = { [weak self] () -> Void in
-            self?.tableView.reloadData()
-            self?.countersInformationLabel.text = self?.itemManager.countersInformation
+            self?.setContentView()
         }
     }
 
@@ -48,6 +53,7 @@ final class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
+        setupNavigationBar()
         registerTableViewCells()
     }
 
@@ -57,6 +63,10 @@ final class MainScreenViewController: UIViewController {
     }
 
     @IBAction func onAddButtonTapped(_ sender: Any) {
+        presenter.presentAddItemModule()
+    }
+
+    @IBAction func onEmptyViewButtonTapped(_ sender: Any) {
         itemManager.addItem(
             Counter(id: "\(itemManager.itemsCount)",
                     title: "Item \(itemManager.itemsCount)",
@@ -90,7 +100,7 @@ extension MainScreenViewController: MainScreenViewInterface {
     func setEmptyView() {
         tableView.isHidden = true
         emptyView.isHidden = false
-        countersInformationLabel.text = " . "
+        countersInformationLabel.text = " ᐧ "
     }
 
     func setItemManager(_ itemManager: CounterItemManager) {
@@ -110,6 +120,15 @@ extension MainScreenViewController {
             UINib(nibName: "CounterTableViewCell", bundle: nil),
             forCellReuseIdentifier: "CounterTableViewCell"
         )
+    }
+
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.searchController = searchController
+
+        searchController.searchBar.delegate = self
+        searchController.searchBar.tintColor = UIColor(named: "secondaryLabel")
     }
 }
 

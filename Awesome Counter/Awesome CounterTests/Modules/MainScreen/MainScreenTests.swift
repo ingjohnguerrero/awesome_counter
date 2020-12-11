@@ -30,7 +30,7 @@ class MainScreenTests: XCTestCase {
     }
 
     func test_hasSearchBox() {
-        let searchBarIsSubView = view.searchBar?.isDescendant(of: view.view) ?? false
+        let searchBarIsSubView = (view.searchBar != nil)
         XCTAssertTrue(searchBarIsSubView)
     }
 
@@ -43,11 +43,6 @@ class MainScreenTests: XCTestCase {
         let emptyViewIsSubView = view.emptyView?.isDescendant(of: view.view) ?? false
         XCTAssertTrue(emptyViewIsSubView)
     }
-
-//    func test_hasEditButton() {
-//        let editButtonIsSubView = view.editButton?.isDescendant(of: view.view) ?? false
-//        XCTAssertTrue(editButtonIsSubView)
-//    }
 
     func test_hasCounterLabel() {
         let counterLabelIsSubView = view.countersInformationLabel?.isDescendant(of: view.view) ?? false
