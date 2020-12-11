@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [ Add Item scree ]
+
+#### Added
+
+* Add new item form
+* Add adding closure
+* Add padded textfield
+
 ### [ Main screen ]
 
 #### Added
