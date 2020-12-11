@@ -25,11 +25,11 @@ class AlamofireService {
     }
 
     func put(at route: APIRoute, params: Parameters = [:]) -> DataRequest {
-        return request(at: route, method: .put, encoding: JSONEncoding.default)
+        return request(at: route, method: .put, params: params, encoding: JSONEncoding.default)
     }
 
     func delete(at route: APIRoute, params: Parameters = [:]) -> DataRequest {
-        return request(at: route, method: .delete, encoding: JSONEncoding.default)
+        return request(at: route, method: .delete, params: params, encoding: JSONEncoding.default)
     }
 
     func request(
