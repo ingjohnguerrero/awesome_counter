@@ -17,17 +17,24 @@ final class AddItemPresenter {
     private unowned let view: AddItemViewInterface
     private let interactor: AddItemInteractorInterface
     private let wireframe: AddItemWireframeInterface
+    private var onAddItemClosure: ((Counter)->Void)!
 
     // MARK: - Lifecycle -
 
-    init(view: AddItemViewInterface, interactor: AddItemInteractorInterface, wireframe: AddItemWireframeInterface) {
+    init(view: AddItemViewInterface, interactor: AddItemInteractorInterface, wireframe: AddItemWireframeInterface, onAddItemClosure: @escaping ((Counter) -> Void)) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
+        self.onAddItemClosure = onAddItemClosure
     }
 }
 
 // MARK: - Extensions -
 
 extension AddItemPresenter: AddItemPresenterInterface {
+    func saveCounter(title: String) {
+        let counter = Counter(id: "0", title: title, count: 1)
+        onAddItemClosure(counter)
+    }
+
 }

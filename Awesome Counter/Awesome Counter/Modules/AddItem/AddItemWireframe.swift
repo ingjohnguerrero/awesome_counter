@@ -18,12 +18,12 @@ final class AddItemWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    init(onAddItemClosure: ((Counter) -> Void)) {
+    init(onAddItemClosure: @escaping ((Counter) -> Void)) {
         let moduleViewController = storyboard.instantiateViewController(ofType: AddItemViewController.self)
         super.init(viewController: moduleViewController)
 
         let interactor = AddItemInteractor()
-        let presenter = AddItemPresenter(view: moduleViewController, interactor: interactor, wireframe: self)
+        let presenter = AddItemPresenter(view: moduleViewController, interactor: interactor, wireframe: self, onAddItemClosure: onAddItemClosure)
         moduleViewController.presenter = presenter
     }
 

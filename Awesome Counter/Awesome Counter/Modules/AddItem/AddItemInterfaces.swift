@@ -17,6 +17,7 @@ protocol AddItemViewInterface: ViewInterface {
 }
 
 protocol AddItemPresenterInterface: PresenterInterface {
+    func saveCounter(title: String)
 }
 
 protocol AddItemInteractorInterface: InteractorInterface {

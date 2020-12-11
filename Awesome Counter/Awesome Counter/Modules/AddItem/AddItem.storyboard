@@ -4,24 +4,87 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
-        <!--Add Item View Controller-->
+        <!--Create a counter-->
         <scene sceneID="XJ1-QA-Nrj">
             <objects>
                 <viewController storyboardIdentifier="AddItemViewController" id="zIc-eW-6fX" customClass="AddItemViewController" customModule="Awesome_Counter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z2g-4m-atm">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Cups of coffee" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-5l-wGS" customClass="PaddedTextField" customModule="Awesome_Counter" customModuleProvider="target">
+                                <rect key="frame" x="12" y="69" width="390" height="55"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="secondaryLabel"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="lQx-KZ-Are"/>
+                                </constraints>
+                                <color key="textColor" name="label"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTextFieldChanged:" destination="zIc-eW-6fX" eventType="editingChanged" id="zOA-Rq-LtI"/>
+                                    <outlet property="delegate" destination="zIc-eW-6fX" id="bhw-Hv-ONd"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="3pi-N7-nbV"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="tertiarySystemFill"/>
+                        <constraints>
+                            <constraint firstItem="jjB-5l-wGS" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" constant="12" id="gy6-6X-p13"/>
+                            <constraint firstItem="jjB-5l-wGS" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" constant="25" id="m21-sH-NCh"/>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="jjB-5l-wGS" secondAttribute="trailing" constant="12" id="vhW-xm-eCY"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Create a counter" id="n3a-ZD-XKq">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="oGH-3I-pie">
+                            <color key="tintColor" name="secondaryLabel"/>
+                            <connections>
+                                <action selector="goBackButtonTaped:" destination="zIc-eW-6fX" id="20F-LQ-Amj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Save" id="LC1-kW-pnA">
+                            <color key="tintColor" name="secondaryLabel"/>
+                            <connections>
+                                <action selector="onSaveButtonTapped:" destination="zIc-eW-6fX" id="0KD-Jr-M0s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="counterTitleLabel" destination="jjB-5l-wGS" id="2dv-h2-aOD"/>
+                        <outlet property="saveButton" destination="LC1-kW-pnA" id="LVy-SD-UCv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rle-ol-2Ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="306" y="303"/>
         </scene>
     </scenes>
+    <color key="tintColor" name="secondaryLabel"/>
+    <resources>
+        <namedColor name="label">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="secondaryLabel">
+            <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tertiarySystemFill">
+            <color red="0.92900002002716064" green="0.92900002002716064" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

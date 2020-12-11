@@ -6,15 +6,30 @@
 //
 
 import XCTest
+@testable import Awesome_Counter
 
 class AddItemTests: XCTestCase {
 
+    var onAddItemClosure: ((Counter) -> Void)!
+    lazy var wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
+    let interactor = AddItemInteractor()
+    lazy var view = wireframe.viewController as! AddItemViewController
+    lazy var presenter = AddItemPresenter(view: view, interactor: interactor, wireframe: wireframe)
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        onAddItemClosure = { (counter) -> Void in
+            print("\(counter.title)")
+        }
+        view.presenter = presenter
+        view.loadViewIfNeeded()
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
+    func test_hasTableView() {
+        XCTAssertTrue(view.counterTitleLabel?.isDescendant(of: view.view) ?? false)
+    }
 }

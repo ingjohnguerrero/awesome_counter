@@ -35,8 +35,17 @@ class CounterTableViewCell: UITableViewCell {
 
     func configCell(with item: Counter) {
         counter = item
-        countLabel.text = "\(item.count)"
+        countLabel.text = counter.countString()
         titleLabel.text = item.title
+        updateCountLabelColor()
+    }
+
+    func updateCountLabelColor() {
+        if countLabel.text != "0" {
+            countLabel.textColor = UIColor(named: "secondaryLabel")
+        } else {
+            countLabel.textColor = UIColor(named: "tertiaryLabel")
+        }
     }
 
     @IBAction func onIncrementButtonTapped(_ sender: Any) {
@@ -46,6 +55,7 @@ class CounterTableViewCell: UITableViewCell {
             userInfo: ["counterId": counter.id])
         counter.incrementCount()
         countLabel.text = counter.countString()
+        updateCountLabelColor()
     }
 
     @IBAction func onDecrementButtonTapped(_ sender: Any) {
@@ -55,5 +65,6 @@ class CounterTableViewCell: UITableViewCell {
             userInfo: ["counterId": counter.id])
         counter.decrementCount()
         countLabel.text = counter.countString()
+        updateCountLabelColor()
     }
 }

@@ -43,7 +43,7 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
         }
     }
 
-    func presentAddItemModule(onAddItemClosure: ((Counter) -> Void)) {
+    func presentAddItemModule(onAddItemClosure: @escaping ((Counter) -> Void)) {
         let wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
         navigationController?.pushWireframe(wireframe)
     }

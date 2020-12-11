@@ -12,6 +12,11 @@ import UIKit
 
 final class AddItemViewController: UIViewController {
 
+    // MARK: - IBOutlets -
+
+    @IBOutlet weak var counterTitleLabel: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+
     // MARK: - Public properties -
 
     var presenter: AddItemPresenterInterface!
@@ -20,6 +25,20 @@ final class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+
+    @IBAction func goBackButtonTaped(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func onSaveButtonTapped(_ sender: Any) {
+        presenter.saveCounter(title: counterTitleLabel.text ?? "")
+        navigationController?.popViewController(animated: true)
+    }
+
+    @IBAction func onTextFieldChanged(_ sender: UITextField) {
+        let counterTitle = sender.text ?? ""
+        saveButton.isEnabled = !(counterTitle.isEmpty)
     }
 
 }
