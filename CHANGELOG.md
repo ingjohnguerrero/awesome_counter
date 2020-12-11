@@ -6,6 +6,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### [ Add Item scree ]
+
+#### Added
+
+* Add new item form
+* Add adding closure
+* Add padded textfield
+
+### [ Main screen ]
+
+#### Added
+
+* Add MainScreen VIPER module
+* Add MainScreen Data provider
+* Add TDD for MainScreen
+* Add Counter item manager with TDD
+* Add Counter Model
+* Add SearchBar functionality
+
+### [ Swift lint ]
+
+#### Added
+
+* Add swiftlint configuration file
+* Add swiftlint script phase
+
 ## [0.1.0] - 2020-12-03
 
 ### [ Welcome View ]

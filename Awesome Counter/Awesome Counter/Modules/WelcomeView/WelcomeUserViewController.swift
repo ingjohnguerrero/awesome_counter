@@ -20,14 +20,13 @@ final class WelcomeUserViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var continueButton: UIButton!
 
-
     // MARK: - Public properties -
 
     var presenter: WelcomeUserPresenterInterface!
 
     // MARK: - Private properties -
 
-    var infoArray: [WelcomeUserCellTuple] = [] {
+    var infoArray: [WelcomeCellType] = [] {
         didSet {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
@@ -44,14 +43,18 @@ final class WelcomeUserViewController: UIViewController {
         presenter.viewDidLoad()
     }
 
+    @IBAction func onContinueButtonTapped(_ sender: Any) {
+        presenter.goToMainScreen()
+    }
+
 }
 
 // MARK: - Extensions -
 
 extension WelcomeUserViewController: WelcomeUserViewInterface {
 
-    func setTableView(with tupleArray: [WelcomeUserCellTuple]) {
-        infoArray = tupleArray
+    func setTableView(with cellTypeArray: [WelcomeCellType]) {
+        infoArray = cellTypeArray
     }
 
 }

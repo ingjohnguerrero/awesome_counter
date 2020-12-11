@@ -56,10 +56,6 @@ class WelcomeUserTests: XCTestCase {
       XCTAssertTrue(view.tableView.dataSource is WelcomeUserViewController)
     }
 
-    func test_LoadingView_SetsTableViewDelegate() {
-      XCTAssertTrue(view.tableView.delegate is WelcomeUserViewController)
-    }
-
     func test_hasContinueButton () {
         XCTAssertTrue(view.continueButton?.isDescendant(of: view.view) ?? false)
     }
