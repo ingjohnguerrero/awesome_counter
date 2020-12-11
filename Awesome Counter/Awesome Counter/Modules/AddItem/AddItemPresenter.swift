@@ -33,7 +33,7 @@ final class AddItemPresenter {
 
 extension AddItemPresenter: AddItemPresenterInterface {
     func saveCounter(title: String) {
-        let counter = Counter(id: "0", title: title, count: 1)
+        let counter = Counter(id: "0", title: title, count: 0)
         onAddItemClosure(counter)
     }
 

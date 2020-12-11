@@ -24,23 +24,34 @@ final class MainScreenViewController: UIViewController {
                                 )!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
+    @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var countersInformationLabel: UILabel!
 
     // MARK: - Public properties -
 
     var presenter: MainScreenPresenterInterface!
-    var itemManager: CounterItemManager!
+    var itemManager: CounterItemManager?
     var searchController = UISearchController(searchResultsController: nil)
     lazy var searchBar: UISearchBar! = searchController.searchBar
 
     // MARK: - Lifecycle -
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        presenter.viewDidLoad()
+        setupNavigationBar()
+        registerTableViewCells()
+        configureRefreshControl()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presenter.viewDidAppear()
+    }
+
     fileprivate func setupItemManager() {
         dataProvider.itemManager = itemManager
-        dataProvider.itemManager?.onItemAddedClosure = { [weak self] () -> Void in
-            self?.setContentView()
-        }
     }
 
     fileprivate func setTableViewDataProvider() {
@@ -50,47 +61,44 @@ final class MainScreenViewController: UIViewController {
         setupItemManager()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        presenter.viewDidLoad()
-        setupNavigationBar()
-        registerTableViewCells()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presenter.viewDidAppear()
-    }
-
     @IBAction func onAddButtonTapped(_ sender: Any) {
         presenter.presentAddItemModule()
     }
 
     @IBAction func onEmptyViewButtonTapped(_ sender: Any) {
-        itemManager.addItem(
-            Counter(id: "\(itemManager.itemsCount)",
-                    title: "Item \(itemManager.itemsCount)",
-                    count: 1)
-        )
+        presenter.presentAddItemModule()
+    }
+
+    @IBAction func onRetryButtonTapped(_ sender: Any) {
+        presenter.loadCounters()
     }
 }
 
 // MARK: - Extensions -
 
 extension MainScreenViewController: MainScreenViewInterface {
+
+    func setErrorView() {
+        tableView.isHidden = true
+        emptyView.isHidden = true
+        errorView.isHidden = false
+    }
+
     func setContentView() {
         defer {
-            updateCounterInformation()
+            updateCountersInformation()
         }
         tableView.reloadData()
         tableView.isHidden = false
         emptyView.isHidden = true
+        errorView.isHidden = true
     }
 
     func startLoading() {
         activityIndicatorView.startAnimating()
         tableView.isHidden = true
         emptyView.isHidden = true
+        errorView.isHidden = true
     }
 
     func finishLoading() {
@@ -100,6 +108,7 @@ extension MainScreenViewController: MainScreenViewInterface {
     func setEmptyView() {
         tableView.isHidden = true
         emptyView.isHidden = false
+        errorView.isHidden = true
         countersInformationLabel.text = " ᐧ "
     }
 
@@ -108,8 +117,18 @@ extension MainScreenViewController: MainScreenViewInterface {
         setTableViewDataProvider()
     }
 
-    func updateCounterInformation() {
-        countersInformationLabel.text = itemManager.countersInformation
+    func updateCountersInformation() {
+        countersInformationLabel.text = itemManager?.countersInformation ?? " ᐧ "
+    }
+
+    func endTableViewRefreshing() {
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.refreshControl?.endRefreshing()
+        }
+    }
+
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
 
@@ -129,6 +148,18 @@ extension MainScreenViewController {
 
         searchController.searchBar.delegate = self
         searchController.searchBar.tintColor = UIColor(named: "secondaryLabel")
+    }
+
+    func configureRefreshControl () {
+       // Add the refresh control to your UIScrollView object.
+       tableView.refreshControl = UIRefreshControl()
+       tableView.refreshControl?.addTarget(self, action:
+                                          #selector(handleRefreshControl),
+                                          for: .valueChanged)
+    }
+
+    @objc func handleRefreshControl() {
+        presenter.refreshCounters()
     }
 }
 

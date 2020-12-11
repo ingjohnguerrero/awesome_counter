@@ -1,0 +1,40 @@
+{
+  "configurations" : [
+    {
+      "id" : "7F5F9B17-7D90-4789-923A-F9D9547DFFF6",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:Awesome Counter.xcodeproj",
+          "identifier" : "41F24C2725759C2F003B4CEE",
+          "name" : "Awesome Counter"
+        }
+      ]
+    },
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Awesome Counter.xcodeproj",
+      "identifier" : "41F24C2725759C2F003B4CEE",
+      "name" : "Awesome Counter"
+    }
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "APICounterServiceTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Awesome Counter.xcodeproj",
+        "identifier" : "41F24C4025759C31003B4CEE",
+        "name" : "Awesome CounterTests"
+      }
+    }
+  ],
+  "version" : 1
+}

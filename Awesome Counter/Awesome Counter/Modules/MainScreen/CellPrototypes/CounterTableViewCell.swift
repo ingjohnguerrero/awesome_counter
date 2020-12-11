@@ -59,6 +59,9 @@ class CounterTableViewCell: UITableViewCell {
     }
 
     @IBAction func onDecrementButtonTapped(_ sender: Any) {
+        guard !counter.isCountZero else {
+            return
+        }
         NotificationCenter.default.post(
           name: NSNotification.Name("CounterDecrementedNotification"),
           object: self,

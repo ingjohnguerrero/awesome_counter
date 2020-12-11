@@ -3,10 +3,26 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [1.0.0]
 
-## [Unreleased]
+### [Add web server integration]
 
-### [ Add Item scree ]
+#### Added
+
+* Add Cocoapods
+* Add Alamofire
+* Add AlamofireService
+* Add CountersService
+* Add connection error handling
+* Add pull to refresh functionality
+
+#### Changed
+
+* Add missing connection to interactors
+
+## [0.9.0]
+
+### [ Add Item screen ]
 
 #### Added
 
@@ -16,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### [ Main screen ]
 
-#### Added
+#### Added
 
 * Add MainScreen VIPER module
 * Add MainScreen Data provider

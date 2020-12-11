@@ -80,6 +80,10 @@
                                 <rect key="frame" x="0.0" y="862" width="414" height="34"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Xr-tGs">
+                                <rect key="frame" x="0.0" y="44" width="414" height="758"/>
+                                <color key="backgroundColor" name="quaternarySystemFill"/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-al-YpV">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
@@ -113,10 +117,47 @@
                                     <constraint firstItem="8q6-u4-Zsd" firstAttribute="centerX" secondItem="aXh-al-YpV" secondAttribute="centerX" id="o3X-2M-doc"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Xr-tGs">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNw-a3-Ho5">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
-                                <color key="backgroundColor" name="quaternarySystemFill"/>
-                            </tableView>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UBy-EI-mvl">
+                                        <rect key="frame" x="20" y="329.33333333333331" width="374" height="99.666666666666686"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couldn’t load the counters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taZ-DH-AKe">
+                                                <rect key="frame" x="56.333333333333343" y="0.0" width="261.33333333333326" height="25.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="22"/>
+                                                <color key="textColor" name="label"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Internet connection appears to be offline." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bld-K5-WEd">
+                                                <rect key="frame" x="14" y="37.666666666666686" width="346" height="20"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                <color key="textColor" name="quaternaryLabel"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbG-2Z-orM" customClass="RoundedButton" customModule="Awesome_Counter" customModuleProvider="target">
+                                                <rect key="frame" x="168.66666666666666" y="69.666666666666686" width="37" height="30"/>
+                                                <color key="backgroundColor" name="secondaryLabel"/>
+                                                <state key="normal" title="Retry">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="onEmptyViewButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="yaB-1X-LkS"/>
+                                                    <action selector="onRetryButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="n7s-cE-Bpz"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="aeU-RR-hsy"/>
+                                <color key="backgroundColor" name="tertiaryLabel"/>
+                                <constraints>
+                                    <constraint firstItem="UBy-EI-mvl" firstAttribute="leading" secondItem="HNw-a3-Ho5" secondAttribute="leading" constant="20" id="5VV-Fe-PRx"/>
+                                    <constraint firstAttribute="trailing" secondItem="UBy-EI-mvl" secondAttribute="trailing" constant="20" id="QwJ-mR-Nwg"/>
+                                    <constraint firstItem="UBy-EI-mvl" firstAttribute="centerX" secondItem="HNw-a3-Ho5" secondAttribute="centerX" id="aDw-Sd-WLo"/>
+                                    <constraint firstItem="UBy-EI-mvl" firstAttribute="centerY" secondItem="HNw-a3-Ho5" secondAttribute="centerY" id="axh-I9-gCk"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3pi-N7-nbV"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -128,30 +169,30 @@
                             <constraint firstItem="aXh-al-YpV" firstAttribute="top" secondItem="GRH-qy-oVf" secondAttribute="bottom" id="4oc-dw-GKu"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="top" secondItem="MxH-Xr-tGs" secondAttribute="bottom" id="8pu-rp-FS0"/>
                             <constraint firstItem="GRH-qy-oVf" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="ANF-LL-bNP"/>
+                            <constraint firstItem="aXh-al-YpV" firstAttribute="top" secondItem="HNw-a3-Ho5" secondAttribute="bottom" id="Af5-qO-El2"/>
                             <constraint firstItem="MxH-Xr-tGs" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="DMr-zS-hK8"/>
                             <constraint firstAttribute="bottom" secondItem="W1G-qB-oPR" secondAttribute="bottom" id="Jo2-45-l5d"/>
                             <constraint firstItem="MxH-Xr-tGs" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="MmY-g1-XzA"/>
+                            <constraint firstItem="HNw-a3-Ho5" firstAttribute="trailing" secondItem="3pi-N7-nbV" secondAttribute="trailing" id="Q0t-Ot-S4P"/>
                             <constraint firstItem="Pv8-Us-D39" firstAttribute="centerY" secondItem="Z2g-4m-atm" secondAttribute="centerY" id="Qnv-A3-wYm"/>
                             <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="MxH-Xr-tGs" secondAttribute="trailing" id="Tr0-Xr-6zh"/>
                             <constraint firstAttribute="trailing" secondItem="W1G-qB-oPR" secondAttribute="trailing" id="UEB-OV-pzv"/>
                             <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="aXh-al-YpV" secondAttribute="trailing" id="XAh-Kt-TRq"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="bottom" secondItem="3pi-N7-nbV" secondAttribute="bottom" id="jfs-4f-Qy1"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="lgI-Vc-EFA"/>
+                            <constraint firstItem="HNw-a3-Ho5" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="t1c-a5-HEF"/>
+                            <constraint firstItem="HNw-a3-Ho5" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="uo0-Ga-GGI"/>
                             <constraint firstItem="W1G-qB-oPR" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="bottom" id="zmw-AH-zJj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Counters" id="cuJ-kB-o5m">
-                        <barButtonItem key="leftBarButtonItem" enabled="NO" style="done" systemItem="edit" id="5xL-Qw-dzh">
-                            <color key="tintColor" name="secondaryLabel"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Counters" id="cuJ-kB-o5m"/>
                     <connections>
                         <outlet property="activityIndicatorView" destination="Pv8-Us-D39" id="zdj-rf-oV8"/>
                         <outlet property="addButton" destination="6cn-Hb-s65" id="88p-1S-5G6"/>
                         <outlet property="countersInformationLabel" destination="8q6-u4-Zsd" id="Mzo-CD-JcQ"/>
                         <outlet property="dataProvider" destination="YYR-vE-7eG" id="Zjh-wY-4Oj"/>
-                        <outlet property="editButton" destination="5xL-Qw-dzh" id="csm-84-dD2"/>
                         <outlet property="emptyView" destination="GRH-qy-oVf" id="12k-ZB-y8V"/>
+                        <outlet property="errorView" destination="HNw-a3-Ho5" id="I46-g1-hza"/>
                         <outlet property="tableView" destination="MxH-Xr-tGs" id="n1P-Wh-Grp"/>
                     </connections>
                 </viewController>

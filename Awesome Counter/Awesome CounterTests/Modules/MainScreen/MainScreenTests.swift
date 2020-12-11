@@ -11,7 +11,7 @@ import XCTest
 class MainScreenTests: XCTestCase {
 
     let wireframe = MainScreenWireframe()
-    let interactor = MainScreenInteractor()
+    let interactor = MockMainScreenInteraction()
     lazy var view = wireframe.viewController as! MainScreenViewController
     lazy var presenter = MainScreenPresenter(view: view, interactor: interactor, wireframe: wireframe)
 
@@ -69,8 +69,10 @@ class MainScreenTests: XCTestCase {
     func test_ReloadData_SetsCounterInformationLabel() {
         let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
         let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
-        view.itemManager.addItem(coffeCounter)
-        view.itemManager.addItem(beerCounter)
+        view.itemManager?.addItem(coffeCounter)
+        view.itemManager?.addItem(beerCounter)
+        view.updateCountersInformation()
+        view.reloadTableView()
         let stringFormat = "%d items · Counted %d times"
         let stringWithFormat = String(format: stringFormat, 2, 11)
 
@@ -80,8 +82,8 @@ class MainScreenTests: XCTestCase {
     func test_IncrementCounter_SetsCounterInformationLabel() {
         let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
         let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
-        view.itemManager.addItem(coffeCounter)
-        view.itemManager.addItem(beerCounter)
+        view.itemManager?.addItem(coffeCounter)
+        view.itemManager?.addItem(beerCounter)
 
         NotificationCenter.default.post(
           name: NSNotification.Name("CounterIncrementedNotification"),
@@ -91,16 +93,19 @@ class MainScreenTests: XCTestCase {
         let stringFormat = "%d items · Counted %d times"
         let stringWithFormat = String(format: stringFormat, 2, 12)
 
-        XCTAssertEqual(stringWithFormat, view.itemManager.countersInformation)
+        XCTAssertEqual(stringWithFormat, view.itemManager?.countersInformation)
     }
 
     func test_DecrementCounter_SetsCounterInformationLabel() {
         let coffeCounter = Counter(id: "0", title: "Cups of coffee", count: 5)
         let beerCounter = Counter(id: "1", title: "Glasses of beer", count: 6)
-        view.itemManager.addItem(coffeCounter)
-        view.itemManager.addItem(beerCounter)
-
-        let cell = view.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CounterTableViewCell
+        view.itemManager?.addItem(coffeCounter)
+        view.itemManager?.addItem(beerCounter)
+        view.reloadTableView()
+        guard let cell = view.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? CounterTableViewCell else {
+            XCTFail()
+            return
+        }
         cell.decrementButton.sendActions(for: UIControl.Event.touchUpInside)
 
         let stringFormat = "%d items · Counted %d times"
@@ -109,4 +114,24 @@ class MainScreenTests: XCTestCase {
         XCTAssertEqual(stringWithFormat, view.countersInformationLabel.text)
     }
 
+}
+
+extension MainScreenTests {
+    class MockMainScreenInteraction: MainScreenInteractorInterface {
+        func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+    }
 }

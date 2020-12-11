@@ -36,23 +36,18 @@ final class MainScreenPresenter {
 // MARK: - Extensions -
 
 extension MainScreenPresenter: MainScreenPresenterInterface {
+
     func viewDidLoad() {
         defer {
             addNotificationObserver()
         }
-        view.startLoading()
+        itemManager.setItems([])
         view.setItemManager(itemManager)
-        if itemManager.itemsCount > 0 {
-            view.setContentView()
-        } else {
-            view.setEmptyView()
-        }
+        loadCounters()
     }
 
     func viewDidAppear() {
-        DispatchQueue.main.async { [weak self] in
-            self?.view.finishLoading()
-        }
+
     }
 
     fileprivate func removeNotificationObserver() {
@@ -74,20 +69,72 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
 
     @objc func incrementCounter(sender: NSNotification) {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
-        _ = itemManager.incrementCounter(byId: counterId )
-        view.updateCounterInformation()
+        interactor.incrementCounter(byId: counterId) { [weak self] (responseCounters, responseError) in
+            guard responseError == nil, let strongSelf = self else {
+                self?.view.setErrorView()
+                return
+            }
+            _ = strongSelf.itemManager.incrementCounter(byId: counterId )
+            strongSelf.view.updateCountersInformation()
+        }
     }
 
     @objc func decrementCounter(sender: NSNotification) {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
-        _ = itemManager.decrementCounter(byId: counterId )
-        view.updateCounterInformation()
+        interactor.decrementCounter(byId: counterId) { [weak self] (responseCounters, responseError) in
+            guard responseError == nil, let strongSelf = self else {
+                self?.view.setErrorView()
+                return
+            }
+            _ = strongSelf.itemManager.decrementCounter(byId: counterId )
+            strongSelf.view.updateCountersInformation()
+        }
     }
 
     func presentAddItemModule() {
         wireframe.navigate(to: MainScreenNavigationOption.addItem({ [weak self] (newCounter) in
-            self?.itemManager.addItem(newCounter)
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.interactor.addCounter(title: newCounter.title) { (responseCounters, responseError) in
+                strongSelf.itemManager.addItem(newCounter)
+                strongSelf.view.updateCountersInformation()
+                strongSelf.view.reloadTableView()
+            }
         }))
+    }
+
+    func loadCounters() {
+        view.startLoading()
+        interactor.getCounters { [weak self] (responseCounters, responseError) in
+            guard responseError == nil, let strongSelf = self else {
+                self?.view.setErrorView()
+                return
+            }
+
+            strongSelf.itemManager.setItems(responseCounters)
+            if strongSelf.itemManager.itemsCount > 0 {
+                strongSelf.view.setContentView()
+            } else {
+                strongSelf.view.setEmptyView()
+            }
+
+            strongSelf.view.finishLoading()
+        }
+    }
+
+    func refreshCounters() {
+        interactor.getCounters { [weak self] (responseCounters, responseError) in
+            guard responseError == nil, let strongSelf = self else {
+                self?.view.setErrorView()
+                return
+            }
+
+            strongSelf.itemManager.setItems(responseCounters)
+            strongSelf.view.reloadTableView()
+            strongSelf.view.updateCountersInformation()
+            strongSelf.view.endTableViewRefreshing()
+        }
     }
 
 }
