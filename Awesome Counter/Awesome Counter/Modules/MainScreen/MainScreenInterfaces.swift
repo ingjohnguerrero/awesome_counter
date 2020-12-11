@@ -22,16 +22,25 @@ protocol MainScreenViewInterface: ViewInterface {
     func startLoading()
     func finishLoading()
     func setEmptyView()
+    func setErrorView()
     func setContentView()
     func setItemManager(_ itemManager: CounterItemManager)
-    func updateCounterInformation()
+    func endTableViewRefreshing()
+    func reloadTableView()
+    func updateCountersInformation()
 }
 
 protocol MainScreenPresenterInterface: PresenterInterface {
     func viewDidLoad()
     func viewDidAppear()
     func presentAddItemModule()
+    func loadCounters()
+    func refreshCounters()
 }
 
 protocol MainScreenInteractorInterface: InteractorInterface {
+    func getCounters(completion: @escaping CounterService.CountersDataResponse)
+    func incrementCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
+    func decrementCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
+    func addCounter(title: String, completion: @escaping CounterService.CountersDataResponse)
 }

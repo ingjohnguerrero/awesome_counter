@@ -34,8 +34,6 @@ class CounterItemManager: NSObject {
         return stringWithFormat
     }
 
-    var onItemAddedClosure: (() -> Void)?
-
     // MARK: - Private properties -
 
     /// Array of user counters
@@ -50,14 +48,12 @@ class CounterItemManager: NSObject {
     /// - Parameter item: Counter item to be added
     func addItem(_ item: Counter) {
         itemArray.append(item)
-        onItemAddedClosure?()
     }
 
     /// Set items array with given array
     /// - Parameter items: Counter items to populate the item manager
     func setItems(_ items: [Counter]) {
         itemArray = items
-        onItemAddedClosure?()
     }
 
     /// Ask to the manager for an item in the given index

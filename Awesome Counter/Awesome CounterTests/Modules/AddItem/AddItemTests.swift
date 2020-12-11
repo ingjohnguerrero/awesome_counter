@@ -14,7 +14,7 @@ class AddItemTests: XCTestCase {
     lazy var wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
     let interactor = AddItemInteractor()
     lazy var view = wireframe.viewController as! AddItemViewController
-    lazy var presenter = AddItemPresenter(view: view, interactor: interactor, wireframe: wireframe)
+    lazy var presenter = AddItemPresenter(view: view, interactor: interactor, wireframe: wireframe, onAddItemClosure: onAddItemClosure)
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.

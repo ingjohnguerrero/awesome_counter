@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "1D35B163-D569-42A4-A105-DFC75602E9DB",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "APIEnvironmentsTests",
+        "APIRouterTests",
+        "AddItemTests",
+        "Awesome_CounterTests",
+        "CounterTableViewCellTests",
+        "CounterTests",
+        "ItemManagerTests",
+        "MainScreenDataProviderTests",
+        "MainScreenTests",
+        "MockCounterServiceTests",
+        "WelcomeUserTests"
+      ],
+      "target" : {
+        "containerPath" : "container:Awesome Counter.xcodeproj",
+        "identifier" : "41F24C4025759C31003B4CEE",
+        "name" : "Awesome CounterTests"
+      }
+    }
+  ],
+  "version" : 1
+}
