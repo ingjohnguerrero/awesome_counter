@@ -30,3 +30,7 @@
 |![XCConfig image](https://github.com/ingjohnguerrero/awesome_counter/blob/main/img/baseUrlConfig.png?raw=true) |
 |---|
 | XCConfig file|
+
+## Changelog ##
+
+For more information about the releases check the [CHANGELOG](./CHANGELOG.md) file
