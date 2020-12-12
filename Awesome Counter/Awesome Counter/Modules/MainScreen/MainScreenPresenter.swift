@@ -69,7 +69,7 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
 
     @objc func incrementCounter(sender: NSNotification) {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
-        interactor.incrementCounter(byId: counterId) { [weak self] (responseCounters, responseError) in
+        interactor.incrementCounter(byId: counterId) { [weak self] (_, responseError) in
             guard responseError == nil, let strongSelf = self else {
                 self?.view.setErrorView()
                 return
@@ -81,7 +81,7 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
 
     @objc func decrementCounter(sender: NSNotification) {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
-        interactor.decrementCounter(byId: counterId) { [weak self] (responseCounters, responseError) in
+        interactor.decrementCounter(byId: counterId) { [weak self] (_, responseError) in
             guard responseError == nil, let strongSelf = self else {
                 self?.view.setErrorView()
                 return
@@ -96,7 +96,7 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.interactor.addCounter(title: newCounter.title) { (responseCounters, responseError) in
+            strongSelf.interactor.addCounter(title: newCounter.title) { (_, _) in
                 strongSelf.itemManager.addItem(newCounter)
                 strongSelf.view.updateCountersInformation()
                 strongSelf.view.reloadTableView()

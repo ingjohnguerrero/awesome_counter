@@ -17,7 +17,7 @@ final class AddItemPresenter {
     private unowned let view: AddItemViewInterface
     private let interactor: AddItemInteractorInterface
     private let wireframe: AddItemWireframeInterface
-    private var onAddItemClosure: ((Counter)->Void)!
+    private var onAddItemClosure: ((Counter) -> Void)!
 
     // MARK: - Lifecycle -
 
