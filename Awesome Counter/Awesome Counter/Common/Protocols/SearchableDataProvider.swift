@@ -9,4 +9,5 @@ import Foundation
 
 @objc protocol SearchableDataProvider {
     func updateSearchTerm(_ term: String)
+    func getCountersIds(of indexPaths: [IndexPath]) -> [String]
 }

@@ -43,6 +43,19 @@ class MainScreenDataProvider: NSObject, UITableViewDelegate, UITableViewDataSour
         searchTerm = term
         tempSearchResults = itemManager?.search(byTerm: searchTerm) ?? []
     }
+
+    func getCountersIds(of indexPaths: [IndexPath]) -> [String] {
+
+        let counterIds = indexPaths.map { (indexPath) -> String in
+            if isUserSearching {
+                return tempSearchResults[indexPath.row].id
+            } else {
+                return itemManager?.item(at: indexPath.row).id ?? ""
+            }
+        }
+
+        return counterIds
+    }
 }
 
 @objc protocol ItemManagerSettable {

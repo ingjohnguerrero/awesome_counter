@@ -40,12 +40,52 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
         switch option {
         case .addItem(let onAddItemClosure):
             presentAddItemModule(onAddItemClosure: onAddItemClosure)
+        case .activityView(let countersDescription):
+            presentActivityView(textToShare: countersDescription)
+        case .deleteActionSheet(let completion):
+            presentDeletationActionSheet(completion: completion)
         }
     }
 
     func presentAddItemModule(onAddItemClosure: @escaping ((Counter) -> Void)) {
         let wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
         navigationController?.pushWireframe(wireframe)
+    }
+
+    func presentActivityView(textToShare: [String]) {
+        let activityViewController = UIActivityViewController(
+            activityItems: textToShare,
+            applicationActivities: nil
+        )
+
+        activityViewController
+            .popoverPresentationController?
+            .sourceView = viewController.view
+
+        activityViewController.excludedActivityTypes = [
+            UIActivity.ActivityType.airDrop,
+            UIActivity.ActivityType.postToFacebook
+        ]
+
+        navigationController?.present(activityViewController, animated: true, completion: nil)
+    }
+
+    func presentDeletationActionSheet(completion: @escaping ((Bool) -> Void)) {
+        let alertActionSheetController: UIAlertController = UIAlertController(title: "Delete selected counters", message: "Do you really want to delete these counters", preferredStyle: UIAlertController.Style.actionSheet)
+
+        let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (_) in
+            completion(false)
+        }
+
+        let okAction:UIAlertAction = UIAlertAction(title: "Delete selected counters", style: UIAlertAction.Style.destructive) { (_) in
+
+            completion(true)
+        }
+
+        alertActionSheetController.addAction(cancelAction)
+        alertActionSheetController.addAction(okAction)
+
+        navigationController?.present(alertActionSheetController, animated: true, completion: nil)
     }
 
 }

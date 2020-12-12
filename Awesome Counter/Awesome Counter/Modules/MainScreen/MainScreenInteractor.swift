@@ -18,6 +18,7 @@ final class MainScreenInteractor {
 // MARK: - Extensions -
 
 extension MainScreenInteractor: MainScreenInteractorInterface {
+
     func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
         counterService.getCounters(completion: completion)
     }
@@ -32,5 +33,9 @@ extension MainScreenInteractor: MainScreenInteractorInterface {
 
     func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
         counterService.createCounter(title: title, completion: completion)
+    }
+
+    func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
+        counterService.deleteCounter(byId: id, completion: completion)
     }
 }
