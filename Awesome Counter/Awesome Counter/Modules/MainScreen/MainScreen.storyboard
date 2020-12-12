@@ -83,6 +83,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Xr-tGs">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <color key="backgroundColor" name="quaternarySystemFill"/>
+                                <color key="sectionIndexBackgroundColor" name="quaternarySystemFill"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-al-YpV">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
@@ -182,7 +183,6 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="onEmptyViewButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="yaB-1X-LkS"/>
                                                     <action selector="onRetryButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="n7s-cE-Bpz"/>
                                                 </connections>
                                             </button>
