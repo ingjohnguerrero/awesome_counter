@@ -38,7 +38,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gXp-qS-5od">
-                                <rect key="frame" x="36.5" y="15" width="13.5" height="28"/>
+                                <rect key="frame" x="34.5" y="15" width="15.5" height="29"/>
                                 <fontDescription key="fontDescription" name="SFProRounded-Semibold" family="SF Pro Rounded" pointSize="24"/>
                                 <color key="textColor" name="secondaryLabel"/>
                                 <nil key="highlightedColor"/>
@@ -127,7 +127,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" name="quaternarySystemFill"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="aKq-Ps-kYD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0W0-fl-YMq"/>
                     <constraint firstAttribute="trailing" secondItem="aKq-Ps-kYD" secondAttribute="trailing" constant="12" id="6VK-0I-D14"/>
@@ -136,7 +136,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" name="quaternarySystemFill"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="countLabel" destination="gXp-qS-5od" id="pF8-hV-zxF"/>
                 <outlet property="decrementButton" destination="yrn-jR-AfQ" id="Qqm-4Q-AJK"/>
@@ -154,9 +154,6 @@
         </namedColor>
         <namedColor name="quaternaryLabel">
             <color red="0.53299999237060547" green="0.54500001668930054" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="quaternarySystemFill">
-            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryLabel">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

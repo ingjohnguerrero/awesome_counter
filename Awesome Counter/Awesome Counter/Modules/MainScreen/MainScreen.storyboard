@@ -28,6 +28,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ChZ-j5-ayY" userLabel="backgroundView">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" name="UIBackground"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GRH-qy-oVf">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <subviews>
@@ -83,7 +87,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MxH-Xr-tGs">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <color key="backgroundColor" name="quaternarySystemFill"/>
-                                <color key="sectionIndexBackgroundColor" name="quaternarySystemFill"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-al-YpV">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
@@ -200,7 +204,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3pi-N7-nbV"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="GRH-qy-oVf" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="1p8-6o-1B7"/>
                             <constraint firstItem="W1G-qB-oPR" firstAttribute="leading" secondItem="Z2g-4m-atm" secondAttribute="leading" id="2pI-QU-os6"/>
@@ -211,13 +215,17 @@
                             <constraint firstItem="GRH-qy-oVf" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="ANF-LL-bNP"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="top" secondItem="HNw-a3-Ho5" secondAttribute="bottom" id="Af5-qO-El2"/>
                             <constraint firstItem="MxH-Xr-tGs" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="DMr-zS-hK8"/>
+                            <constraint firstItem="ChZ-j5-ayY" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="Gej-03-gRh"/>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="bottom" secondItem="ChZ-j5-ayY" secondAttribute="bottom" id="JNg-Jf-3rL"/>
                             <constraint firstAttribute="bottom" secondItem="W1G-qB-oPR" secondAttribute="bottom" id="Jo2-45-l5d"/>
                             <constraint firstItem="MxH-Xr-tGs" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="MmY-g1-XzA"/>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="ChZ-j5-ayY" secondAttribute="trailing" id="OWy-S1-wIL"/>
                             <constraint firstItem="HNw-a3-Ho5" firstAttribute="trailing" secondItem="3pi-N7-nbV" secondAttribute="trailing" id="Q0t-Ot-S4P"/>
                             <constraint firstItem="Pv8-Us-D39" firstAttribute="centerY" secondItem="Z2g-4m-atm" secondAttribute="centerY" id="Qnv-A3-wYm"/>
                             <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="MxH-Xr-tGs" secondAttribute="trailing" id="Tr0-Xr-6zh"/>
                             <constraint firstAttribute="trailing" secondItem="W1G-qB-oPR" secondAttribute="trailing" id="UEB-OV-pzv"/>
                             <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="aXh-al-YpV" secondAttribute="trailing" id="XAh-Kt-TRq"/>
+                            <constraint firstItem="ChZ-j5-ayY" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" id="g4L-hd-Ibl"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="bottom" secondItem="3pi-N7-nbV" secondAttribute="bottom" id="jfs-4f-Qy1"/>
                             <constraint firstItem="aXh-al-YpV" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="lgI-Vc-EFA"/>
                             <constraint firstItem="HNw-a3-Ho5" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="t1c-a5-HEF"/>
@@ -264,6 +272,9 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <namedColor name="UIBackground">
+            <color red="0.53333333333333333" green="0.54509803921568623" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="label">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
