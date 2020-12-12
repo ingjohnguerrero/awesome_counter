@@ -118,6 +118,7 @@ class MainScreenTests: XCTestCase {
 
 extension MainScreenTests {
     class MockMainScreenInteraction: MainScreenInteractorInterface {
+
         func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
             completion([], nil)
         }
@@ -131,6 +132,10 @@ extension MainScreenTests {
         }
 
         func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
+            completion([], nil)
+        }
+
+        func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
             completion([], nil)
         }
     }

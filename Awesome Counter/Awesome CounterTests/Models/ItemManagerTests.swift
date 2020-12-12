@@ -41,12 +41,21 @@ class ItemManagerTests: XCTestCase {
     }
 
     func test_ItemAt_ReturnsAddedItem() {
-      let item = Counter(id: "0", title: "Beers", count: 2)
-      sut.addItem(item)
+        let item = Counter(id: "0", title: "Beers", count: 2)
+        sut.addItem(item)
 
-      let returnedItem = sut.item(at: 0)
+        let returnedItem = sut.item(at: 0)
 
-      XCTAssertEqual(returnedItem.title, item.title)
+        XCTAssertEqual(returnedItem.title, item.title)
+    }
+
+    func test_ItemById_ReturnsItem() {
+        let item = Counter(id: "abc", title: "Beers", count: 2)
+        sut.addItem(item)
+
+        let returnedItem = sut.item(byId: "abc")
+
+        XCTAssertEqual(returnedItem?.title, item.title)
     }
 
     func test_RemoveItem_ById() {
@@ -120,6 +129,18 @@ class ItemManagerTests: XCTestCase {
         let results = sut.search(byTerm: "beer")
 
         XCTAssertEqual(results.count, 1)
+    }
+
+    func test_DescriptionsByIds_ReturnsStrings() {
+        let beerCounter = Counter(id: "ab", title: "Beers", count: 2)
+        sut.addItem(beerCounter)
+
+        let coffeeCounter = Counter(id: "cd", title: "Coffee cups", count: 3)
+        sut.addItem(coffeeCounter)
+
+        let stringDescriptions = sut.counterDescriptions(byIds: ["ab", "cd"])
+
+        XCTAssertEqual(stringDescriptions.count, 2)
     }
 
 }

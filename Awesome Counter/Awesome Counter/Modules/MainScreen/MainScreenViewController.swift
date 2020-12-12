@@ -88,17 +88,23 @@ final class MainScreenViewController: UIViewController {
         }
     }
     @IBAction func onDeleteButtonTapped(_ sender: Any) {
-        print("\(tableView.indexPathsForSelectedRows)")
+        let counterIdsToDelete = dataProvider.getCountersIds(of: tableView.indexPathsForSelectedRows ?? [])
+        presenter.deleteCounters(byIds: counterIdsToDelete)
     }
 
     @IBAction func onShareButtonTapped(_ sender: Any) {
-
+        let counterIdsToShare = dataProvider.getCountersIds(of: tableView.indexPathsForSelectedRows ?? [])
+        presenter.shareCounters(byIds: counterIdsToShare)
     }
 
     @IBAction func onSelectAllButtonTapped(_ sender: Any) {
         let totalRows = tableView.numberOfRows(inSection: 0)
         for row in 0..<totalRows {
-            tableView.selectRow(at: NSIndexPath(row: row, section: 0) as IndexPath, animated: false, scrollPosition: UITableView.ScrollPosition.none)
+            tableView.selectRow(
+                at: NSIndexPath(row: row, section: 0) as IndexPath,
+                animated: false,
+                scrollPosition: UITableView.ScrollPosition.none
+            )
         }
     }
 }
@@ -181,11 +187,12 @@ extension MainScreenViewController {
     }
 
     func configureRefreshControl () {
-        // Add the refresh control to your UIScrollView object.
         tableView.refreshControl = UIRefreshControl()
-        tableView.refreshControl?.addTarget(self, action:
-                                                #selector(handleRefreshControl),
-                                            for: .valueChanged)
+        tableView.refreshControl?.addTarget(
+            self,
+            action: #selector(handleRefreshControl),
+            for: .valueChanged
+        )
     }
 
     @objc func handleRefreshControl() {
@@ -198,7 +205,6 @@ extension MainScreenViewController {
         addButton.isHidden = true
         navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "secondaryLabel")
         navigationItem.leftBarButtonItem?.title = "Edit"
-        navigationItem.backBarButtonItem?.title = "Edit"
     }
 
     func disableEditingMode() {
@@ -207,7 +213,6 @@ extension MainScreenViewController {
         addButton.isHidden = false
         navigationItem.rightBarButtonItem?.tintColor = UIColor.clear
         navigationItem.leftBarButtonItem?.title = "Done"
-        navigationItem.backBarButtonItem?.title = "Done"
     }
 
 }

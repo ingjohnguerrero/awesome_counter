@@ -63,6 +63,16 @@ class CounterItemManager: NSObject {
         return itemArray[index]
     }
 
+    /// Ask to the manager for an item by given id
+    /// - Parameter counterId: id of required item
+    /// - Returns: Requested counter item or nil
+    func item(byId counterId: String) -> Counter? {
+        let counter = itemArray.first { (counter) -> Bool in
+            counter.id == counterId
+        }
+        return counter
+    }
+
     /// Remove Item at given id
     /// - Parameter id: id of item user want to remove
     func removeItem(byId id: String) {
@@ -101,6 +111,16 @@ class CounterItemManager: NSObject {
     func search(byTerm term: String) -> [Counter] {
         let results = itemArray.filter { $0.title.localizedCaseInsensitiveContains(term) }
         return results
+    }
+
+    /// Get counters descriptions for given ids
+    /// - Parameter counterIds: ids of counters user want to share
+    /// - Returns: Array of string describing required counters
+    func counterDescriptions(byIds counterIds: [String]) -> [String] {
+        let counterDescriptions = counterIds.map { (counterId) -> String in
+            return item(byId: counterId)?.stringDescription() ?? ""
+        }
+        return counterDescriptions
     }
 
 }

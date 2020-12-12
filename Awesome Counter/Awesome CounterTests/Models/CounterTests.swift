@@ -41,4 +41,9 @@ class CounterTests: XCTestCase {
         XCTAssertEqual(sut.count, 0)
     }
 
+    func test_CounterToString_ReturnsADescription() {
+        let counterDescription = sut.stringDescription()
+        XCTAssertFalse(counterDescription.isEmpty)
+    }
+
 }

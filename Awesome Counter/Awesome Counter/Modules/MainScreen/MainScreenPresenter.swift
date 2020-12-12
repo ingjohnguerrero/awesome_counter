@@ -137,4 +137,32 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
         }
     }
 
+    fileprivate func deleteCounterUponConfirmation(_ counterIds: [String]) {
+        for counterId in counterIds {
+            interactor.deleteCounter(byId: counterId) { (_, responseError) in
+                guard responseError == nil else {
+                    // Error view with retry
+                    return
+                }
+
+                self.itemManager.removeItem(byId: counterId)
+                self.view.reloadTableView()
+                self.view.updateCountersInformation()
+            }
+        }
+    }
+
+    func deleteCounters(byIds counterIds: [String]) {
+        wireframe.navigate(to: .deleteActionSheet({ [weak self] (performDeletation) in
+            if performDeletation {
+                self?.deleteCounterUponConfirmation(counterIds)
+            }
+        }))
+    }
+
+    func shareCounters(byIds counterIds: [String]) {
+        let countersDescription = itemManager.counterDescriptions(byIds: counterIds)
+        wireframe.navigate(to: .activityView(countersDescription))
+    }
+
 }

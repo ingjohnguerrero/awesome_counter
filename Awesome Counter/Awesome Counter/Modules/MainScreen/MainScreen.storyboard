@@ -87,6 +87,13 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXh-al-YpV">
                                 <rect key="frame" x="0.0" y="802" width="414" height="60"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zhm-TD-bUi">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
+                                        <color key="backgroundColor" name="quaternarySystemFill"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="2ar-Bu-X8n"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KO0-0v-Oeb">
                                         <rect key="frame" x="374" y="9" width="26" height="26"/>
                                         <subviews>
@@ -138,11 +145,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Zhm-TD-bUi" secondAttribute="trailing" id="1f3-fg-k3U"/>
                                     <constraint firstAttribute="height" constant="60" id="7Uc-zf-hLO"/>
                                     <constraint firstItem="8q6-u4-Zsd" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="13" id="CvM-gZ-WaL"/>
+                                    <constraint firstItem="Zhm-TD-bUi" firstAttribute="leading" secondItem="aXh-al-YpV" secondAttribute="leading" id="DHR-M9-hqK"/>
                                     <constraint firstAttribute="trailing" secondItem="KO0-0v-Oeb" secondAttribute="trailing" constant="14" id="Luw-wu-iRP"/>
                                     <constraint firstItem="d6l-iq-Aza" firstAttribute="leading" secondItem="aXh-al-YpV" secondAttribute="leading" constant="19" id="RvF-ep-XC4"/>
                                     <constraint firstItem="KO0-0v-Oeb" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="9" id="Taq-Gj-EDc"/>
+                                    <constraint firstItem="Zhm-TD-bUi" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" id="dyj-1p-Ix7"/>
                                     <constraint firstItem="8q6-u4-Zsd" firstAttribute="centerX" secondItem="aXh-al-YpV" secondAttribute="centerX" id="o3X-2M-doc"/>
                                     <constraint firstItem="d6l-iq-Aza" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="9" id="suu-xF-d4z"/>
                                 </constraints>

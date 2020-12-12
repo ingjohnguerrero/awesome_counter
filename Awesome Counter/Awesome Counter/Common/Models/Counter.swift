@@ -26,4 +26,8 @@ struct Counter {
     func countString() -> String {
         return "\(count)"
     }
+
+    func stringDescription() -> String {
+        return "\(count) x \(title)"
+    }
 }
