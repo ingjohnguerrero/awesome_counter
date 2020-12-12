@@ -12,6 +12,8 @@ import UIKit
 
 enum MainScreenNavigationOption {
     case addItem(_ onAddedItemClosure: ((Counter) -> Void))
+    case activityView(_ countersDescription: [String])
+    case deleteActionSheet(_ completion: ((Bool) -> Void))
 }
 
 protocol MainScreenWireframeInterface: WireframeInterface {
@@ -36,6 +38,8 @@ protocol MainScreenPresenterInterface: PresenterInterface {
     func presentAddItemModule()
     func loadCounters()
     func refreshCounters()
+    func deleteCounters(byIds counterIds: [String])
+    func shareCounters(byIds counterIds: [String])
 }
 
 protocol MainScreenInteractorInterface: InteractorInterface {
@@ -43,4 +47,5 @@ protocol MainScreenInteractorInterface: InteractorInterface {
     func incrementCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
     func decrementCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
     func addCounter(title: String, completion: @escaping CounterService.CountersDataResponse)
+    func deleteCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
 }

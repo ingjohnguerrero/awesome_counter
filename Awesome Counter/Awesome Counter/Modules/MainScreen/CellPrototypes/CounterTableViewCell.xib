@@ -127,7 +127,7 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
-                <color key="backgroundColor" name="quaternarySystemFill"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="aKq-Ps-kYD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="0W0-fl-YMq"/>
                     <constraint firstAttribute="trailing" secondItem="aKq-Ps-kYD" secondAttribute="trailing" constant="12" id="6VK-0I-D14"/>
@@ -154,9 +154,6 @@
         </namedColor>
         <namedColor name="quaternaryLabel">
             <color red="0.53299999237060547" green="0.54500001668930054" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="quaternarySystemFill">
-            <color red="0.96899998188018799" green="0.96899998188018799" blue="0.96899998188018799" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="secondaryLabel">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

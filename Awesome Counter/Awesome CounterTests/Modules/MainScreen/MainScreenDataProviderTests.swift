@@ -106,6 +106,22 @@ class MainScreenDataProviderTests: XCTestCase {
         XCTAssertEqual(tableView.numberOfRows(inSection: 0), 1)
     }
 
+    func test_GivenSelectedIndexpath_ReturnsCounterIds() {
+        let beerCounter = Counter(id: "abc", title: "Beers", count: 2)
+        sut.itemManager?.addItem(beerCounter)
+
+        let coffeeCounter = Counter(id: "bcd", title: "Coffee cups", count: 3)
+        sut.itemManager?.addItem(coffeeCounter)
+
+        let redCars = Counter(id: "cde", title: "Red cars", count: 4)
+        sut.itemManager?.addItem(redCars)
+
+        let selectedIndexPaths = [IndexPath(item: 0, section: 0),IndexPath(item: 2, section: 0)]
+        let selectedIds = sut.getCountersIds(of: selectedIndexPaths)
+
+        XCTAssertEqual(selectedIds, ["abc", "cde"])
+    }
+
 }
 
 extension MainScreenDataProviderTests {

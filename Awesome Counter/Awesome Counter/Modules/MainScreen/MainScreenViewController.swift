@@ -15,18 +15,23 @@ final class MainScreenViewController: UIViewController {
     // MARK: - IBOutlets -
 
     @IBOutlet weak var editButton: UIBarButtonItem!
+    @IBOutlet weak var selectAllButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var dataProvider: (
-                                    UITableViewDataSource &
-                                    UITableViewDelegate &
-                                    ItemManagerSettable &
-                                    SearchableDataProvider
-                                )!
+        UITableViewDataSource &
+        UITableViewDelegate &
+        ItemManagerSettable &
+        SearchableDataProvider
+    )!
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var countersInformationLabel: UILabel!
+    @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
+
+    // MARK: - Private properties -
 
     // MARK: - Public properties -
 
@@ -71,6 +76,36 @@ final class MainScreenViewController: UIViewController {
 
     @IBAction func onRetryButtonTapped(_ sender: Any) {
         presenter.loadCounters()
+    }
+
+    @IBAction func onTableViewEditTapped(_ sender: UIBarButtonItem) {
+        if(self.tableView.isEditing == true) {
+            self.tableView.isEditing = false
+            disableEditingMode()
+        } else {
+            self.tableView.isEditing = true
+            enableEditingMode()
+        }
+    }
+    @IBAction func onDeleteButtonTapped(_ sender: Any) {
+        let counterIdsToDelete = dataProvider.getCountersIds(of: tableView.indexPathsForSelectedRows ?? [])
+        presenter.deleteCounters(byIds: counterIdsToDelete)
+    }
+
+    @IBAction func onShareButtonTapped(_ sender: Any) {
+        let counterIdsToShare = dataProvider.getCountersIds(of: tableView.indexPathsForSelectedRows ?? [])
+        presenter.shareCounters(byIds: counterIdsToShare)
+    }
+
+    @IBAction func onSelectAllButtonTapped(_ sender: Any) {
+        let totalRows = tableView.numberOfRows(inSection: 0)
+        for row in 0..<totalRows {
+            tableView.selectRow(
+                at: NSIndexPath(row: row, section: 0) as IndexPath,
+                animated: false,
+                scrollPosition: UITableView.ScrollPosition.none
+            )
+        }
     }
 }
 
@@ -128,6 +163,7 @@ extension MainScreenViewController: MainScreenViewInterface {
     }
 
     func reloadTableView() {
+        editButtonItem.isEnabled = (itemManager?.itemsCount != 0)
         tableView.reloadData()
     }
 }
@@ -151,16 +187,34 @@ extension MainScreenViewController {
     }
 
     func configureRefreshControl () {
-       // Add the refresh control to your UIScrollView object.
-       tableView.refreshControl = UIRefreshControl()
-       tableView.refreshControl?.addTarget(self, action:
-                                          #selector(handleRefreshControl),
-                                          for: .valueChanged)
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(
+            self,
+            action: #selector(handleRefreshControl),
+            for: .valueChanged
+        )
     }
 
     @objc func handleRefreshControl() {
         presenter.refreshCounters()
     }
+
+    func enableEditingMode() {
+        deleteButton.isHidden = false
+        shareButton.isHidden = false
+        addButton.isHidden = true
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "secondaryLabel")
+        navigationItem.leftBarButtonItem?.title = "Edit"
+    }
+
+    func disableEditingMode() {
+        deleteButton.isHidden = true
+        shareButton.isHidden = true
+        addButton.isHidden = false
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.clear
+        navigationItem.leftBarButtonItem?.title = "Done"
+    }
+
 }
 
 extension MainScreenViewController: UISearchBarDelegate {
