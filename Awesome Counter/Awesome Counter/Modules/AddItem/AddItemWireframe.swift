@@ -18,12 +18,17 @@ final class AddItemWireframe: BaseWireframe {
 
     // MARK: - Module setup -
 
-    init(onAddItemClosure: @escaping ((Counter) -> Void)) {
+    init(onAddItemClosure: @escaping (() -> Void)) {
         let moduleViewController = storyboard.instantiateViewController(ofType: AddItemViewController.self)
         super.init(viewController: moduleViewController)
 
         let interactor = AddItemInteractor()
-        let presenter = AddItemPresenter(view: moduleViewController, interactor: interactor, wireframe: self, onAddItemClosure: onAddItemClosure)
+        let presenter = AddItemPresenter(
+            view: moduleViewController,
+            interactor: interactor,
+            wireframe: self,
+            onAddItemClosure: onAddItemClosure
+        )
         moduleViewController.presenter = presenter
     }
 
@@ -32,4 +37,25 @@ final class AddItemWireframe: BaseWireframe {
 // MARK: - Extensions -
 
 extension AddItemWireframe: AddItemWireframeInterface {
+    func goBack() {
+        navigationController?.popViewController(animated: true)
+    }
+
+    func presentErrorAlert() {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Couldn’t create the counter",
+            message: "The Internet connection appears to be offline.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let cancelAction: UIAlertAction = UIAlertAction(
+            title: "Dismiss",
+            style: UIAlertAction.Style.cancel,
+            handler: nil
+        )
+
+        alertController.addAction(cancelAction)
+
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
 }

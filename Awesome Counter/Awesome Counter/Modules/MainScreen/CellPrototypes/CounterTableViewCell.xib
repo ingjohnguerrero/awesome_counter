@@ -136,7 +136,7 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
-            <color key="backgroundColor" name="tertiaryLabel"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="countLabel" destination="gXp-qS-5od" id="pF8-hV-zxF"/>
                 <outlet property="decrementButton" destination="yrn-jR-AfQ" id="Qqm-4Q-AJK"/>

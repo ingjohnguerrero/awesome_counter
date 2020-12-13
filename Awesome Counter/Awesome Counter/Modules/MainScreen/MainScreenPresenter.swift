@@ -71,7 +71,8 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
         interactor.incrementCounter(byId: counterId) { [weak self] (_, responseError) in
             guard responseError == nil, let strongSelf = self else {
-                self?.view.setErrorView()
+                let counter = self?.itemManager.item(byId: counterId)
+                self?.wireframe.navigate(to: .incrementErrorAlert(counter))
                 return
             }
             _ = strongSelf.itemManager.incrementCounter(byId: counterId )
@@ -83,7 +84,8 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
         guard let counterId = sender.userInfo?["counterId"] as? String else { fatalError() }
         interactor.decrementCounter(byId: counterId) { [weak self] (_, responseError) in
             guard responseError == nil, let strongSelf = self else {
-                self?.view.setErrorView()
+                let counter = self?.itemManager.item(byId: counterId)
+                self?.wireframe.navigate(to: .decrementErrorAlert(counter))
                 return
             }
             _ = strongSelf.itemManager.decrementCounter(byId: counterId )
@@ -92,32 +94,33 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
     }
 
     func presentAddItemModule() {
-        wireframe.navigate(to: MainScreenNavigationOption.addItem({ [weak self] (newCounter) in
+        wireframe.navigate(to: MainScreenNavigationOption.addItem({ [weak self] () in
             guard let strongSelf = self else {
                 return
             }
-            strongSelf.interactor.addCounter(title: newCounter.title) { (_, _) in
-                strongSelf.itemManager.addItem(newCounter)
-                strongSelf.view.updateCountersInformation()
-                strongSelf.view.reloadTableView()
-            }
+            strongSelf.loadCounters()
         }))
+    }
+
+    fileprivate func validateCountersAndSetView() {
+        if itemManager.itemsCount > 0 {
+            view.setContentView()
+        } else {
+            view.setEmptyView()
+        }
     }
 
     func loadCounters() {
         view.startLoading()
         interactor.getCounters { [weak self] (responseCounters, responseError) in
             guard responseError == nil, let strongSelf = self else {
+                self?.view.finishLoading()
                 self?.view.setErrorView()
                 return
             }
 
             strongSelf.itemManager.setItems(responseCounters)
-            if strongSelf.itemManager.itemsCount > 0 {
-                strongSelf.view.setContentView()
-            } else {
-                strongSelf.view.setEmptyView()
-            }
+            strongSelf.validateCountersAndSetView()
 
             strongSelf.view.finishLoading()
         }
@@ -131,29 +134,39 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
             }
 
             strongSelf.itemManager.setItems(responseCounters)
-            strongSelf.view.reloadTableView()
-            strongSelf.view.updateCountersInformation()
+            strongSelf.validateCountersAndSetView()
             strongSelf.view.endTableViewRefreshing()
         }
     }
 
     fileprivate func deleteCounterUponConfirmation(_ counterIds: [String]) {
-        for counterId in counterIds {
-            interactor.deleteCounter(byId: counterId) { (_, responseError) in
-                guard responseError == nil else {
-                    // Error view with retry
-                    return
+        DispatchQueue.global().async {
+            let semaphore = DispatchSemaphore(value: 0)
+            var batchError: Bool = false
+            for counterId in counterIds {
+                self.interactor.deleteCounter(byId: counterId) { (_, responseError) in
+                    guard responseError == nil else {
+                        batchError = true
+                        let counter = self.itemManager.item(byId: counterId)
+                        self.wireframe.navigate(to: .deleteErrorAlert(counter?.title ?? ""))
+                        semaphore.signal()
+                        return
+                    }
+                    self.itemManager.removeItem(byId: counterId)
+                    self.validateCountersAndSetView()
+                    semaphore.signal()
                 }
+                semaphore.wait()
 
-                self.itemManager.removeItem(byId: counterId)
-                self.view.reloadTableView()
-                self.view.updateCountersInformation()
+                if batchError {
+                    break
+                }
             }
         }
     }
 
     func deleteCounters(byIds counterIds: [String]) {
-        wireframe.navigate(to: .deleteActionSheet({ [weak self] (performDeletation) in
+        wireframe.navigate(to: .deleteActionSheet(counterIds.count, { [weak self] (performDeletation) in
             if performDeletation {
                 self?.deleteCounterUponConfirmation(counterIds)
             }

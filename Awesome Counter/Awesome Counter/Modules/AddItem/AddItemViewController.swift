@@ -25,15 +25,15 @@ final class AddItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
     }
 
     @IBAction func goBackButtonTaped(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        presenter.goBack()
     }
 
     @IBAction func onSaveButtonTapped(_ sender: Any) {
         presenter.saveCounter(title: counterTitleLabel.text ?? "")
-        navigationController?.popViewController(animated: true)
     }
 
     @IBAction func onTextFieldChanged(_ sender: UITextField) {

@@ -11,9 +11,12 @@
 import UIKit
 
 enum MainScreenNavigationOption {
-    case addItem(_ onAddedItemClosure: ((Counter) -> Void))
+    case addItem(_ onAddedItemClosure: (() -> Void))
     case activityView(_ countersDescription: [String])
-    case deleteActionSheet(_ completion: ((Bool) -> Void))
+    case deleteActionSheet(_ selectedItemsCount: Int, _ completion: ((Bool) -> Void))
+    case deleteErrorAlert(_ counterTitle: String)
+    case incrementErrorAlert(_ counter: Counter?)
+    case decrementErrorAlert(_ counter: Counter?)
 }
 
 protocol MainScreenWireframeInterface: WireframeInterface {
