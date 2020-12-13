@@ -11,6 +11,8 @@
 import UIKit
 
 protocol AddItemWireframeInterface: WireframeInterface {
+    func presentErrorAlert()
+    func goBack()
 }
 
 protocol AddItemViewInterface: ViewInterface {
@@ -18,7 +20,9 @@ protocol AddItemViewInterface: ViewInterface {
 
 protocol AddItemPresenterInterface: PresenterInterface {
     func saveCounter(title: String)
+    func goBack()
 }
 
 protocol AddItemInteractorInterface: InteractorInterface {
+    func addCounter(title: String, completion: @escaping CounterService.CountersDataResponse)
 }

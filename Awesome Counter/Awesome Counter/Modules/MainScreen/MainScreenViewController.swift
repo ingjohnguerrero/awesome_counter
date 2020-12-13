@@ -44,6 +44,7 @@ final class MainScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        overrideUserInterfaceStyle = .light
         presenter.viewDidLoad()
         setupNavigationBar()
         registerTableViewCells()
@@ -114,9 +115,11 @@ final class MainScreenViewController: UIViewController {
 extension MainScreenViewController: MainScreenViewInterface {
 
     func setErrorView() {
+        editButton.isEnabled = false
         tableView.isHidden = true
         emptyView.isHidden = true
         errorView.isHidden = false
+        addButton.isHidden = true
     }
 
     func setContentView() {
@@ -124,6 +127,7 @@ extension MainScreenViewController: MainScreenViewInterface {
             updateCountersInformation()
         }
         tableView.reloadData()
+        editButton.isEnabled = true
         tableView.isHidden = false
         emptyView.isHidden = true
         errorView.isHidden = true
@@ -141,9 +145,11 @@ extension MainScreenViewController: MainScreenViewInterface {
     }
 
     func setEmptyView() {
+        editButton.isEnabled = false
         tableView.isHidden = true
         emptyView.isHidden = false
         errorView.isHidden = true
+        addButton.isHidden = false
         countersInformationLabel.text = " ᐧ "
     }
 
@@ -164,6 +170,7 @@ extension MainScreenViewController: MainScreenViewInterface {
 
     func reloadTableView() {
         editButtonItem.isEnabled = (itemManager?.itemsCount != 0)
+
         tableView.reloadData()
     }
 }
