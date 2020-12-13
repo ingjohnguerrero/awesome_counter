@@ -5,6 +5,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.2.0]
 
+### [Error handling improvements]
+
+#### Added
+
+* Add error handling for item creation
+* Add error handling for count update
+* Add retrier on count update error
+
+#### Changed
+
+* Improve creating item flow
+
+#### Fixed
+
+* Fix navigation issues when adding an item
+* Fix information for error alerts
+* Fix state handling for main view
+
 ### [Graphical fixes]
 
 #### Fixed
