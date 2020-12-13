@@ -17,11 +17,11 @@ final class AddItemPresenter {
     private unowned let view: AddItemViewInterface
     private let interactor: AddItemInteractorInterface
     private let wireframe: AddItemWireframeInterface
-    private var onAddItemClosure: ((Counter) -> Void)!
+    private var onAddItemClosure: (() -> Void)!
 
     // MARK: - Lifecycle -
 
-    init(view: AddItemViewInterface, interactor: AddItemInteractorInterface, wireframe: AddItemWireframeInterface, onAddItemClosure: @escaping ((Counter) -> Void)) {
+    init(view: AddItemViewInterface, interactor: AddItemInteractorInterface, wireframe: AddItemWireframeInterface, onAddItemClosure: @escaping (() -> Void)) {
         self.view = view
         self.interactor = interactor
         self.wireframe = wireframe
@@ -32,9 +32,19 @@ final class AddItemPresenter {
 // MARK: - Extensions -
 
 extension AddItemPresenter: AddItemPresenterInterface {
+    func goBack() {
+        wireframe.goBack()
+    }
+
     func saveCounter(title: String) {
-        let counter = Counter(id: "0", title: title, count: 0)
-        onAddItemClosure(counter)
+        interactor.addCounter(title: title) { (_, responseError) in
+            if responseError == nil {
+                self.onAddItemClosure()
+                self.wireframe.goBack()
+            } else {
+                self.wireframe.presentErrorAlert()
+            }
+        }
     }
 
 }

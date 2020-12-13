@@ -42,12 +42,24 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
             presentAddItemModule(onAddItemClosure: onAddItemClosure)
         case .activityView(let countersDescription):
             presentActivityView(textToShare: countersDescription)
-        case .deleteActionSheet(let completion):
-            presentDeletationActionSheet(completion: completion)
+        case .deleteActionSheet(let selectedItemsCount, let completion):
+            presentDeletationActionSheet(selectedItemsCount: selectedItemsCount, completion: completion)
+        case .deleteErrorAlert(let counterTitle):
+            presentDeletationErrorAlert(counterTitle: counterTitle)
+        case .incrementErrorAlert(let counter):
+            guard let counter = counter else {
+                return
+            }
+            presentIncrementErrorAlert(counter: counter)
+        case .decrementErrorAlert(let counter):
+            guard let counter = counter else {
+                return
+            }
+            presentIncrementErrorAlert(counter: counter)
         }
     }
 
-    func presentAddItemModule(onAddItemClosure: @escaping ((Counter) -> Void)) {
+    func presentAddItemModule(onAddItemClosure: @escaping (() -> Void)) {
         let wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
         navigationController?.pushWireframe(wireframe)
     }
@@ -70,15 +82,21 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
         navigationController?.present(activityViewController, animated: true, completion: nil)
     }
 
-    func presentDeletationActionSheet(completion: @escaping ((Bool) -> Void)) {
-        let alertActionSheetController: UIAlertController = UIAlertController(title: "Delete selected counters", message: "Do you really want to delete these counters", preferredStyle: UIAlertController.Style.actionSheet)
+    func presentDeletationActionSheet(selectedItemsCount: Int, completion: @escaping ((Bool) -> Void)) {
+        let alertActionSheetController: UIAlertController = UIAlertController(
+            title: nil,
+            message: nil,
+            preferredStyle: UIAlertController.Style.actionSheet)
 
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { (_) in
             completion(false)
         }
 
-        let okAction:UIAlertAction = UIAlertAction(title: "Delete selected counters", style: UIAlertAction.Style.destructive) { (_) in
+        let countersString = selectedItemsCount > 1 ? "counters" : "counter"
 
+        let okAction:UIAlertAction = UIAlertAction(
+            title: "Delete \(selectedItemsCount) \(countersString)" ,
+            style: UIAlertAction.Style.destructive) { (_) in
             completion(true)
         }
 
@@ -86,6 +104,79 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
         alertActionSheetController.addAction(okAction)
 
         navigationController?.present(alertActionSheetController, animated: true, completion: nil)
+    }
+
+    func presentDeletationErrorAlert(counterTitle: String) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Couldn’t delete the counter “\(counterTitle)”",
+            message: "The Internet connection appears to be offline.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let cancelAction: UIAlertAction = UIAlertAction(
+            title: "Dismiss",
+            style: UIAlertAction.Style.cancel,handler: nil
+        )
+
+        alertController.addAction(cancelAction)
+
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+
+    func presentIncrementErrorAlert(counter: Counter) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Couldn’t update the “\(counter.title)” counter to \(counter.count + 1)",
+            message: "The Internet connection appears to be offline.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let retryAction: UIAlertAction = UIAlertAction(
+            title: "Retry",
+            style: UIAlertAction.Style.default
+        ) { (_) in
+            NotificationCenter.default.post(
+              name: NSNotification.Name("CounterIncrementedNotification"),
+              object: self,
+                userInfo: ["counterId": counter.id])
+        }
+
+        let cancelAction: UIAlertAction = UIAlertAction(
+            title: "Dismiss",
+            style: UIAlertAction.Style.cancel,handler: nil
+        )
+
+        alertController.addAction(retryAction)
+        alertController.addAction(cancelAction)
+
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+
+    func presentDecrementErrorAlert(counter: Counter) {
+        let alertController: UIAlertController = UIAlertController(
+            title: "Couldn’t update the “\(counter.title)” counter to \(counter.count - 1)",
+            message: "The Internet connection appears to be offline.",
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let retryAction: UIAlertAction = UIAlertAction(
+            title: "Retry",
+            style: UIAlertAction.Style.default
+        ) { (_) in
+            NotificationCenter.default.post(
+              name: NSNotification.Name("CounterDecrementedNotification"),
+              object: self,
+                userInfo: ["counterId": counter.id])
+        }
+
+        let cancelAction: UIAlertAction = UIAlertAction(
+            title: "Dismiss",
+            style: UIAlertAction.Style.cancel,handler: nil
+        )
+
+        alertController.addAction(retryAction)
+        alertController.addAction(cancelAction)
+
+        navigationController?.present(alertController, animated: true, completion: nil)
     }
 
 }

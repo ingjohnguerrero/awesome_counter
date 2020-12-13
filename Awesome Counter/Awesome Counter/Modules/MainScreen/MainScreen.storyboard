@@ -65,7 +65,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" name="tertiaryLabel"/>
+                                <color key="backgroundColor" name="tertiarySystemFill"/>
                                 <constraints>
                                     <constraint firstItem="1ic-C8-nKO" firstAttribute="centerX" secondItem="GRH-qy-oVf" secondAttribute="centerX" id="F8o-gy-Cpk"/>
                                     <constraint firstItem="1ic-C8-nKO" firstAttribute="centerY" secondItem="GRH-qy-oVf" secondAttribute="centerY" id="sLD-4L-Ajy"/>
@@ -165,7 +165,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNw-a3-Ho5">
                                 <rect key="frame" x="0.0" y="44" width="414" height="758"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UBy-EI-mvl">
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="UBy-EI-mvl">
                                         <rect key="frame" x="20" y="329.33333333333331" width="374" height="99.666666666666686"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Couldn’t load the counters" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="taZ-DH-AKe">
@@ -193,13 +193,14 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <viewLayoutGuide key="safeArea" id="aeU-RR-hsy"/>
-                                <color key="backgroundColor" name="tertiaryLabel"/>
+                                <color key="backgroundColor" name="tertiarySystemFill"/>
                                 <constraints>
                                     <constraint firstItem="UBy-EI-mvl" firstAttribute="leading" secondItem="HNw-a3-Ho5" secondAttribute="leading" constant="20" id="5VV-Fe-PRx"/>
+                                    <constraint firstItem="UBy-EI-mvl" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HNw-a3-Ho5" secondAttribute="top" constant="10" id="PJ6-xb-LUj"/>
                                     <constraint firstAttribute="trailing" secondItem="UBy-EI-mvl" secondAttribute="trailing" constant="20" id="QwJ-mR-Nwg"/>
                                     <constraint firstItem="UBy-EI-mvl" firstAttribute="centerX" secondItem="HNw-a3-Ho5" secondAttribute="centerX" id="aDw-Sd-WLo"/>
                                     <constraint firstItem="UBy-EI-mvl" firstAttribute="centerY" secondItem="HNw-a3-Ho5" secondAttribute="centerY" id="axh-I9-gCk"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="UBy-EI-mvl" secondAttribute="bottom" constant="10" id="vWt-9I-ojo"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -273,7 +274,7 @@
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="trash" catalog="system" width="121" height="128"/>
         <namedColor name="UIBackground">
-            <color red="0.53333333333333333" green="0.54509803921568623" blue="0.56470588235294117" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.53299999237060547" green="0.54500001668930054" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="label">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -287,8 +288,8 @@
         <namedColor name="secondaryLabel">
             <color red="1" green="0.58399999141693115" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="tertiaryLabel">
-            <color red="0.46299999952316284" green="0.46299999952316284" blue="0.50199997425079346" alpha="0.11999999731779099" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="tertiarySystemFill">
+            <color red="0.92900002002716064" green="0.92900002002716064" blue="0.92900002002716064" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

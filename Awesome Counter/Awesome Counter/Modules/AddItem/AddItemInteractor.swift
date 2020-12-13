@@ -11,9 +11,14 @@
 import Foundation
 
 final class AddItemInteractor {
+    let context = DevelopmentAPIContext(environment: APIEnvironments.production)
+    lazy var counterService = AlamofireCounterService(context: context)
 }
 
 // MARK: - Extensions -
 
 extension AddItemInteractor: AddItemInteractorInterface {
+    func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
+        counterService.createCounter(title: title, completion: completion)
+    }
 }
