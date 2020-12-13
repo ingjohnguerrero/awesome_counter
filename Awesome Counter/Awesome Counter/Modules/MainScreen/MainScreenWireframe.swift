@@ -124,50 +124,50 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
     }
 
     func presentIncrementErrorAlert(counter: Counter) {
-        let alertController: UIAlertController = UIAlertController(
-            title: "Couldn’t update the “\(counter.title)” counter to \(counter.count + 1)",
-            message: "The Internet connection appears to be offline.",
-            preferredStyle: UIAlertController.Style.alert
-        )
 
-        let retryAction: UIAlertAction = UIAlertAction(
-            title: "Retry",
-            style: UIAlertAction.Style.default
-        ) { (_) in
+        let title = "Couldn’t update the “\(counter.title)” counter to \(counter.count + 1)"
+
+        let message = "The Internet connection appears to be offline."
+        let alertController = createAlertWithRetrier(title: title, message: message) { (_) in
             NotificationCenter.default.post(
               name: NSNotification.Name("CounterIncrementedNotification"),
               object: self,
                 userInfo: ["counterId": counter.id])
         }
 
-        let cancelAction: UIAlertAction = UIAlertAction(
-            title: "Dismiss",
-            style: UIAlertAction.Style.cancel,handler: nil
-        )
-
-        alertController.addAction(retryAction)
-        alertController.addAction(cancelAction)
-
         navigationController?.present(alertController, animated: true, completion: nil)
     }
 
     func presentDecrementErrorAlert(counter: Counter) {
-        let alertController: UIAlertController = UIAlertController(
-            title: "Couldn’t update the “\(counter.title)” counter to \(counter.count - 1)",
-            message: "The Internet connection appears to be offline.",
-            preferredStyle: UIAlertController.Style.alert
-        )
+        let title = "Couldn’t update the “\(counter.title)” counter to \(counter.count - 1)"
 
-        let retryAction: UIAlertAction = UIAlertAction(
-            title: "Retry",
-            style: UIAlertAction.Style.default
-        ) { (_) in
+        let message = "The Internet connection appears to be offline."
+        let alertController = createAlertWithRetrier(title: title, message: message) { (_) in
             NotificationCenter.default.post(
               name: NSNotification.Name("CounterDecrementedNotification"),
               object: self,
                 userInfo: ["counterId": counter.id])
         }
 
+        navigationController?.present(alertController, animated: true, completion: nil)
+    }
+
+    func createAlertWithRetrier(
+        title: String,
+        message: String,
+        retryHandler: ((UIAlertAction) -> Void)?) -> UIAlertController {
+        let alertController: UIAlertController = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: UIAlertController.Style.alert
+        )
+
+        let retryAction: UIAlertAction = UIAlertAction(
+            title: "Retry",
+            style: UIAlertAction.Style.default,
+            handler: retryHandler
+        )
+
         let cancelAction: UIAlertAction = UIAlertAction(
             title: "Dismiss",
             style: UIAlertAction.Style.cancel,handler: nil
@@ -176,7 +176,7 @@ extension MainScreenWireframe: MainScreenWireframeInterface {
         alertController.addAction(retryAction)
         alertController.addAction(cancelAction)
 
-        navigationController?.present(alertController, animated: true, completion: nil)
+        return alertController
     }
 
 }
