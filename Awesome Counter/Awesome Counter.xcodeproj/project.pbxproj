@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		41048AFC2586E6E3003C65DC /* CoreDataCounterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41048AFB2586E6E3003C65DC /* CoreDataCounterService.swift */; };
+		41048B082587A9D0003C65DC /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41048B072587A9D0003C65DC /* CoreDataService.swift */; };
+		41048B102587B10A003C65DC /* CoreDataCounter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41048B0F2587B10A003C65DC /* CoreDataCounter+Extensions.swift */; };
 		411A79122583C41100922C6F /* AlamofireService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A79112583C41100922C6F /* AlamofireService.swift */; };
 		411A79262583C63200922C6F /* APIContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A79252583C63200922C6F /* APIContext.swift */; };
 		411A792E2583C64A00922C6F /* APIRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A792D2583C64A00922C6F /* APIRoute.swift */; };
@@ -117,6 +120,9 @@
 /* Begin PBXFileReference section */
 		274BAE57B9ABF26796AB23C5 /* Pods_Awesome_CounterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Awesome_CounterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A788B1A46BA0D209D0FEDFE /* Pods-Awesome CounterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Awesome CounterTests.release.xcconfig"; path = "Target Support Files/Pods-Awesome CounterTests/Pods-Awesome CounterTests.release.xcconfig"; sourceTree = "<group>"; };
+		41048AFB2586E6E3003C65DC /* CoreDataCounterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCounterService.swift; sourceTree = "<group>"; };
+		41048B072587A9D0003C65DC /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		41048B0F2587B10A003C65DC /* CoreDataCounter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CoreDataCounter+Extensions.swift"; sourceTree = "<group>"; };
 		411A79112583C41100922C6F /* AlamofireService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireService.swift; sourceTree = "<group>"; };
 		411A79252583C63200922C6F /* APIContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIContext.swift; sourceTree = "<group>"; };
 		411A792D2583C64A00922C6F /* APIRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRoute.swift; sourceTree = "<group>"; };
@@ -250,6 +256,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		41048AFA2586E67B003C65DC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				41048AFB2586E6E3003C65DC /* CoreDataCounterService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		41048B062587A95D003C65DC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				41048B072587A9D0003C65DC /* CoreDataService.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		411A79242583C60D00922C6F /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +320,7 @@
 		411A79602583D2C500922C6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41048AFA2586E67B003C65DC /* CoreData */,
 				411A797D2583E02C00922C6F /* Alamofire */,
 				411A79612583D2D900922C6F /* CounterService.swift */,
 			);
@@ -308,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				411A79722583D69500922C6F /* APICounter.swift */,
+				41048B0F2587B10A003C65DC /* CoreDataCounter+Extensions.swift */,
 			);
 			path = ResponseModels;
 			sourceTree = "<group>";
@@ -323,6 +347,7 @@
 		4141C63B2583BE0A00405EA2 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				41048B062587A95D003C65DC /* CoreData */,
 				411A79712583D67200922C6F /* ResponseModels */,
 				411A79602583D2C500922C6F /* Services */,
 				4141C6442583BFD400405EA2 /* Alamofire */,
@@ -957,6 +982,7 @@
 				41CAD57C257850CD00073115 /* MainScreenInteractor.swift in Sources */,
 				415BA224257A955400EB3D68 /* CounterItemManager.swift in Sources */,
 				415BA2192579FB1A00EB3D68 /* Counter.swift in Sources */,
+				41048B082587A9D0003C65DC /* CoreDataService.swift in Sources */,
 				41F24C3625759C2F003B4CEE /* Awesome_Counter.xcdatamodeld in Sources */,
 				41988E792577E8E100BE9966 /* InteractorInterface.swift in Sources */,
 				41CAD57A257850CD00073115 /* MainScreenPresenter.swift in Sources */,
@@ -994,7 +1020,9 @@
 				411A792E2583C64A00922C6F /* APIRoute.swift in Sources */,
 				41CAD57B257850CD00073115 /* MainScreenViewController.swift in Sources */,
 				41988E862577E92B00BE9966 /* WelcomeUserViewController.swift in Sources */,
+				41048AFC2586E6E3003C65DC /* CoreDataCounterService.swift in Sources */,
 				411A79542583CD2400922C6F /* CounterServiceRouter.swift in Sources */,
+				41048B102587B10A003C65DC /* CoreDataCounter+Extensions.swift in Sources */,
 				41988E762577E8E100BE9966 /* BaseWireframe.swift in Sources */,
 				41751E762582617200F2918D /* AddItemPresenter.swift in Sources */,
 				411A79732583D69500922C6F /* APICounter.swift in Sources */,
