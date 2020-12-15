@@ -26,19 +26,23 @@ class CoreDataCounterService: CoreDataService, CounterService {
     }
 
     func createCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        createCounterDb(title: title, completion: completion)
+        createCounterBaseService(title: title, completion: completion)
     }
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        deleteCounterDb(byId: id, completion: completion)
+        deleteCounterBaseService(byId: id, completion: completion)
     }
 
     func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        incrementCounterDb(byId: id, completion: completion)
+        incrementCounterBaseService(byId: id, completion: completion)
     }
 
     func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        decrementCounterDb(byId: id, completion: completion)
+        decrementCounterBaseService(byId: id, completion: completion)
     }
 
 }
@@ -47,7 +51,7 @@ class CoreDataCounterService: CoreDataService, CounterService {
 
 private extension CoreDataCounterService {
     func getCountersDb(completion: @escaping ([Counter], Error?) -> Void) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        guard let managedContext = managedContext else { return }
 
         let fetchRequest = NSFetchRequest<CoreDataCounter>(entityName: "CoreDataCounter")
 
@@ -58,12 +62,22 @@ private extension CoreDataCounterService {
             completion(counters, nil)
         } catch {
             debugPrint("Could not fetch: \(error.localizedDescription)")
-            completion([], error)
+            return
         }
     }
 
     func createCounterDb(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        guard let context = managedContext else { return }
+        let counter = CoreDataCounter(context: context)
+        counter.id = "\(Int.random(in: 1...1000))"
+        counter.title = title
+        counter.count = 0
+        do {
+            try context.save()
+            print("Successfully saved data.")
+        } catch {
+            debugPrint("Could not save: \(error.localizedDescription)")
+        }
     }
 
     func deleteCounterDb(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
@@ -77,28 +91,64 @@ private extension CoreDataCounterService {
     func decrementCounterDb(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
 
     }
+
+    func persist(_ counter: Counter) {
+        persist([counter])
+    }
+
+    func persist(_ counters: [Counter]) {
+        guard let context = managedContext else { return }
+
+        _ = counters.map { (counter) -> CoreDataCounter in
+            let coreDataCounter = CoreDataCounter(context: context)
+            coreDataCounter.initWithCounter(from: counter)
+            return coreDataCounter
+        }
+
+        do {
+            try context.save()
+            print("Successfully saved data.")
+        } catch {
+            debugPrint("Could not save: \(error.localizedDescription)")
+        }
+    }
 }
 
 // MARK: - Base service functions -
 
 private extension CoreDataCounterService {
     func getCountersBaseService(completion: @escaping ([Counter], Error?) -> Void) {
-
+        baseService.getCounters { [weak self] (responseCounters, responseError) in
+            self?.persist(responseCounters)
+            completion(responseCounters, responseError)
+        }
     }
 
     func createCounterBaseService(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        baseService.createCounter(title: title) { [weak self] (responseCounters, responseError) in
+            self?.persist(responseCounters)
+            completion(responseCounters, responseError)
+        }
     }
 
     func deleteCounterBaseService(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        baseService.deleteCounter(byId: id) { [weak self] (responseCounters, responseError) in
+            self?.persist(responseCounters)
+            completion(responseCounters, responseError)
+        }
     }
 
     func incrementCounterBaseService(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        baseService.incrementCounter(byId: id) { [weak self] (responseCounters, responseError) in
+            self?.persist(responseCounters)
+            completion(responseCounters, responseError)
+        }
     }
 
     func decrementCounterBaseService(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-
+        baseService.decrementCounter(byId: id) { [weak self] (responseCounters, responseError) in
+            self?.persist(responseCounters)
+            completion(responseCounters, responseError)
+        }
     }
 }

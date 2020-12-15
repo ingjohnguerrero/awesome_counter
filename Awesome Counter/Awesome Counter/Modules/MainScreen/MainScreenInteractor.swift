@@ -13,6 +13,7 @@ import Foundation
 final class MainScreenInteractor {
     let context = DevelopmentAPIContext(environment: APIEnvironments.production)
     lazy var counterService: CounterService! = AlamofireCounterService(context: context)
+    lazy var coreDataCounterService: CounterService = CoreDataCounterService(baseService: counterService)
 }
 
 // MARK: - Extensions -
@@ -20,22 +21,22 @@ final class MainScreenInteractor {
 extension MainScreenInteractor: MainScreenInteractorInterface {
 
     func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
-        counterService.getCounters(completion: completion)
+        coreDataCounterService.getCounters(completion: completion)
     }
 
     func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        counterService.incrementCounter(byId: id, completion: completion)
+        coreDataCounterService.incrementCounter(byId: id, completion: completion)
     }
 
     func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        counterService.decrementCounter(byId: id, completion: completion)
+        coreDataCounterService.decrementCounter(byId: id, completion: completion)
     }
 
     func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-        counterService.createCounter(title: title, completion: completion)
+        coreDataCounterService.createCounter(title: title, completion: completion)
     }
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        counterService.deleteCounter(byId: id, completion: completion)
+        coreDataCounterService.deleteCounter(byId: id, completion: completion)
     }
 }
