@@ -8,10 +8,11 @@
 import Foundation
 import UIKit
 import CoreData
+import Alamofire
 
 class CoreDataCounterService: CoreDataService, CounterService {
-    // MARK: - Dependencies -
 
+    // MARK: - Dependencies -
     private let baseService: CounterService
 
     // MARK: - Initialization -
@@ -21,27 +22,26 @@ class CoreDataCounterService: CoreDataService, CounterService {
     }
 
     func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
-        getCountersDb(completion: completion)
         getCountersBaseService(completion: completion)
     }
 
     func createCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-        createCounterDb(title: title, completion: completion)
+//        createCounterDb(title: title, completion: completion)
         createCounterBaseService(title: title, completion: completion)
     }
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        deleteCounterDb(byId: id, completion: completion)
+//        deleteCounterDb(byId: id, completion: completion)
         deleteCounterBaseService(byId: id, completion: completion)
     }
 
     func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        incrementCounterDb(byId: id, completion: completion)
+//        incrementCounterDb(byId: id, completion: completion)
         incrementCounterBaseService(byId: id, completion: completion)
     }
 
     func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        decrementCounterDb(byId: id, completion: completion)
+//        decrementCounterDb(byId: id, completion: completion)
         decrementCounterBaseService(byId: id, completion: completion)
     }
 
@@ -49,7 +49,7 @@ class CoreDataCounterService: CoreDataService, CounterService {
 
 // MARK: - Database functions -
 
-private extension CoreDataCounterService {
+extension CoreDataCounterService {
     func getCountersDb(completion: @escaping ([Counter], Error?) -> Void) {
         guard let managedContext = managedContext else { return }
 
@@ -92,12 +92,25 @@ private extension CoreDataCounterService {
 
     }
 
+    func deleteAllCounters() {
+        guard let context = managedContext else { return }
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "CoreDataCounter")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+
+        do {
+            let result = try context.execute(deleteRequest)
+        } catch let error as NSError {
+            // TODO: handle the error
+        }
+    }
+
     func persist(_ counter: Counter) {
         persist([counter])
     }
 
     func persist(_ counters: [Counter]) {
         guard let context = managedContext else { return }
+        deleteAllCounters()
 
         _ = counters.map { (counter) -> CoreDataCounter in
             let coreDataCounter = CoreDataCounter(context: context)

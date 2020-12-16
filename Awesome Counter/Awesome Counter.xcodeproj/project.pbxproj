@@ -52,6 +52,7 @@
 		41988E862577E92B00BE9966 /* WelcomeUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41988E802577E92B00BE9966 /* WelcomeUserViewController.swift */; };
 		41988E882577E92B00BE9966 /* WelcomeUserWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41988E822577E92B00BE9966 /* WelcomeUserWireframe.swift */; };
 		41988E902577EB9500BE9966 /* WelcomeUserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41988E8F2577EB9500BE9966 /* WelcomeUserTests.swift */; };
+		41A1FDDB2589A799007F6AD1 /* CoreDataCounterServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41A1FDDA2589A799007F6AD1 /* CoreDataCounterServiceTests.swift */; };
 		41AB7270257BE7A400AAB062 /* CounterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB726E257BE7A400AAB062 /* CounterTableViewCell.swift */; };
 		41AB7271257BE7A400AAB062 /* CounterTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 41AB726F257BE7A400AAB062 /* CounterTableViewCell.xib */; };
 		41AB7279257C64A100AAB062 /* CounterTableViewCellTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AB7278257C64A000AAB062 /* CounterTableViewCellTests.swift */; };
@@ -186,6 +187,7 @@
 		41988E802577E92B00BE9966 /* WelcomeUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUserViewController.swift; sourceTree = "<group>"; };
 		41988E822577E92B00BE9966 /* WelcomeUserWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUserWireframe.swift; sourceTree = "<group>"; };
 		41988E8F2577EB9500BE9966 /* WelcomeUserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeUserTests.swift; sourceTree = "<group>"; };
+		41A1FDDA2589A799007F6AD1 /* CoreDataCounterServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataCounterServiceTests.swift; sourceTree = "<group>"; };
 		41AB726E257BE7A400AAB062 /* CounterTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTableViewCell.swift; sourceTree = "<group>"; };
 		41AB726F257BE7A400AAB062 /* CounterTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CounterTableViewCell.xib; sourceTree = "<group>"; };
 		41AB7278257C64A000AAB062 /* CounterTableViewCellTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTableViewCellTests.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		411A795C2583D28300922C6F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				41A1FDD92589A759007F6AD1 /* CoreData */,
 				411A79662583D52000922C6F /* MockCounterServiceTests.swift */,
 				411A79832583E3C600922C6F /* APICounterServiceTests.swift */,
 			);
@@ -534,6 +537,14 @@
 				41F24C3925759C31003B4CEE /* LaunchScreen.storyboard */,
 			);
 			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		41A1FDD92589A759007F6AD1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				41A1FDDA2589A799007F6AD1 /* CoreDataCounterServiceTests.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		41AB726D257BE76700AAB062 /* CellPrototypes */ = {
@@ -1042,6 +1053,7 @@
 				418A0A7E2582833A008D2F9F /* CounterTests.swift in Sources */,
 				411A79392583C7CD00922C6F /* APIEnvironmentsTests.swift in Sources */,
 				41988E902577EB9500BE9966 /* WelcomeUserTests.swift in Sources */,
+				41A1FDDB2589A799007F6AD1 /* CoreDataCounterServiceTests.swift in Sources */,
 				415BA2062579E8A600EB3D68 /* MainScreenDataProviderTests.swift in Sources */,
 				411A79672583D52000922C6F /* MockCounterServiceTests.swift in Sources */,
 				41AB7279257C64A100AAB062 /* CounterTableViewCellTests.swift in Sources */,

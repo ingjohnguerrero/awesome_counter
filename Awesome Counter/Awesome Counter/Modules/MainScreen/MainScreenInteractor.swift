@@ -9,11 +9,17 @@
 //
 
 import Foundation
+import Alamofire
 
 final class MainScreenInteractor {
+    let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
     let context = DevelopmentAPIContext(environment: APIEnvironments.production)
     lazy var counterService: CounterService! = AlamofireCounterService(context: context)
     lazy var coreDataCounterService: CounterService = CoreDataCounterService(baseService: counterService)
+
+    init() {
+        startNetworkMonitoring()
+    }
 }
 
 // MARK: - Extensions -
@@ -38,5 +44,20 @@ extension MainScreenInteractor: MainScreenInteractorInterface {
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
         coreDataCounterService.deleteCounter(byId: id, completion: completion)
+    }
+
+    func startNetworkMonitoring() {
+      reachabilityManager?.startListening { status in
+        switch status {
+        case .notReachable:
+//          self.showOfflineAlert()
+        case .reachable(.cellular):
+//          self.dismissOfflineAlert()
+        case .reachable(.ethernetOrWiFi):
+//          self.dismissOfflineAlert()
+        case .unknown:
+          print("Unknown network state")
+        }
+      }
     }
 }
