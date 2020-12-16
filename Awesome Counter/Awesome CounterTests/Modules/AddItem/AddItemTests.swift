@@ -10,7 +10,7 @@ import XCTest
 
 class AddItemTests: XCTestCase {
 
-    var onAddItemClosure: ((Counter) -> Void)!
+    var onAddItemClosure: (() -> Void)!
     lazy var wireframe = AddItemWireframe(onAddItemClosure: onAddItemClosure)
     let interactor = AddItemInteractor()
     lazy var view = wireframe.viewController as! AddItemViewController
@@ -18,8 +18,7 @@ class AddItemTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        onAddItemClosure = { (counter) -> Void in
-            print("\(counter.title)")
+        onAddItemClosure = { () -> Void in
         }
         view.presenter = presenter
         view.loadViewIfNeeded()
