@@ -41,9 +41,18 @@ extension MainScreenPresenter: MainScreenPresenterInterface {
         defer {
             addNotificationObserver()
         }
+        configureNetworkingMonitoring()
         itemManager.setItems([])
         view.setItemManager(itemManager)
         loadCounters()
+    }
+
+    fileprivate func configureNetworkingMonitoring() {
+        interactor.startNetworkMonitoring {
+            self.view.updateReachableStatus()
+        } onNotReachableClosure: {
+            self.view.updateNotReachableStatus()
+        }
     }
 
     func viewDidAppear() {

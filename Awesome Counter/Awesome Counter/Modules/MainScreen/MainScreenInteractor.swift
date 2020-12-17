@@ -12,13 +12,16 @@ import Foundation
 import Alamofire
 
 final class MainScreenInteractor {
-    let reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
-    let context = DevelopmentAPIContext(environment: APIEnvironments.production)
+    let environment = APIEnvironments.production
+    lazy var context = DevelopmentAPIContext(environment: environment)
+    lazy var reachabilityManager = NetworkReachabilityManager(host: "www.google.com")
     lazy var counterService: CounterService! = AlamofireCounterService(context: context)
-    lazy var coreDataCounterService: CounterService = CoreDataCounterService(baseService: counterService)
-
-    init() {
-        startNetworkMonitoring()
+    lazy var coreDataCounterService = CoreDataCounterService(baseService: counterService)
+    var currentNetworkStatus: NetworkReachabilityManager.NetworkReachabilityStatus {
+        reachabilityManager?.status ?? .notReachable
+    }
+    var isNotReachable: Bool {
+        currentNetworkStatus == .notReachable
     }
 }
 
@@ -27,37 +30,60 @@ final class MainScreenInteractor {
 extension MainScreenInteractor: MainScreenInteractorInterface {
 
     func getCounters(completion: @escaping ([Counter], Error?) -> Void) {
-        coreDataCounterService.getCounters(completion: completion)
+        if isNotReachable {
+            coreDataCounterService.getCountersDb(completion: completion)
+        } else {
+            coreDataCounterService.getCounters(completion: completion)
+        }
     }
 
     func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        coreDataCounterService.incrementCounter(byId: id, completion: completion)
+        if isNotReachable {
+            coreDataCounterService.incrementCounterDb(byId: id, completion: completion)
+        } else {
+            coreDataCounterService.incrementCounter(byId: id, completion: completion)
+        }
     }
 
     func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        coreDataCounterService.decrementCounter(byId: id, completion: completion)
+        if isNotReachable {
+            coreDataCounterService.decrementCounterDb(byId: id, completion: completion)
+        } else {
+            coreDataCounterService.decrementCounter(byId: id, completion: completion)
+        }
     }
 
     func addCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-        coreDataCounterService.createCounter(title: title, completion: completion)
+        if isNotReachable {
+            coreDataCounterService.createCounterDb(title: title, completion: completion)
+        } else {
+            coreDataCounterService.createCounter(title: title, completion: completion)
+        }
     }
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-        coreDataCounterService.deleteCounter(byId: id, completion: completion)
+        if isNotReachable {
+            coreDataCounterService.deleteCounterDb(byId: id, completion: completion)
+        } else {
+            coreDataCounterService.deleteCounter(byId: id, completion: completion)
+        }
     }
 
-    func startNetworkMonitoring() {
-      reachabilityManager?.startListening { status in
-        switch status {
-        case .notReachable:
-//          self.showOfflineAlert()
-        case .reachable(.cellular):
-//          self.dismissOfflineAlert()
-        case .reachable(.ethernetOrWiFi):
-//          self.dismissOfflineAlert()
-        case .unknown:
-          print("Unknown network state")
+    func startNetworkMonitoring(
+        onReachableClosure: @escaping (() -> Void),
+        onNotReachableClosure: @escaping (() -> Void)
+    ) {
+        reachabilityManager?.startListening { status in
+            DispatchQueue.main.async {
+                switch status {
+                case .notReachable:
+                    onNotReachableClosure()
+                case .reachable(.cellular), .reachable(.ethernetOrWiFi):
+                    onReachableClosure()
+                case .unknown:
+                    print("Unknown network state")
+                }
+            }
         }
-      }
     }
 }

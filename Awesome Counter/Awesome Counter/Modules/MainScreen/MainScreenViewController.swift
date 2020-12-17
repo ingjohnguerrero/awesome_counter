@@ -28,6 +28,7 @@ final class MainScreenViewController: UIViewController {
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var countersInformationLabel: UILabel!
+    @IBOutlet weak var connectionStatusImageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
 
@@ -170,8 +171,15 @@ extension MainScreenViewController: MainScreenViewInterface {
 
     func reloadTableView() {
         editButtonItem.isEnabled = (itemManager?.itemsCount != 0)
-
         tableView.reloadData()
+    }
+
+    func updateReachableStatus() {
+        connectionStatusImageView.image = UIImage(systemName: ConnectionState.reachable.imageName)
+    }
+
+    func updateNotReachableStatus() {
+        connectionStatusImageView.image = UIImage(systemName: ConnectionState.notReachable.imageName)
     }
 }
 

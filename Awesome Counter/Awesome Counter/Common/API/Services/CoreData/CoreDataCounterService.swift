@@ -26,22 +26,18 @@ class CoreDataCounterService: CoreDataService, CounterService {
     }
 
     func createCounter(title: String, completion: @escaping ([Counter], Error?) -> Void) {
-//        createCounterDb(title: title, completion: completion)
         createCounterBaseService(title: title, completion: completion)
     }
 
     func deleteCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-//        deleteCounterDb(byId: id, completion: completion)
         deleteCounterBaseService(byId: id, completion: completion)
     }
 
     func incrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-//        incrementCounterDb(byId: id, completion: completion)
         incrementCounterBaseService(byId: id, completion: completion)
     }
 
     func decrementCounter(byId id: String, completion: @escaping ([Counter], Error?) -> Void) {
-//        decrementCounterDb(byId: id, completion: completion)
         decrementCounterBaseService(byId: id, completion: completion)
     }
 
@@ -75,8 +71,10 @@ extension CoreDataCounterService {
         do {
             try context.save()
             print("Successfully saved data.")
+            getCountersDb(completion: completion)
         } catch {
             debugPrint("Could not save: \(error.localizedDescription)")
+            completion([], error)
         }
     }
 

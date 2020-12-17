@@ -77,6 +77,7 @@
 		41AF041C2578053400754913 /* SF-Pro-Display-ThinItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4154745025761B8500B1B553 /* SF-Pro-Display-ThinItalic.otf */; };
 		41AF041D2578053400754913 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4154745225761B8500B1B553 /* SF-Pro-Display-Ultralight.otf */; };
 		41AF041E2578053400754913 /* SF-Pro-Display-UltralightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4154746325761B8800B1B553 /* SF-Pro-Display-UltralightItalic.otf */; };
+		41C2ABDC258AE4600087F205 /* ConnectionState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C2ABDB258AE4600087F205 /* ConnectionState.swift */; };
 		41CAD578257850CD00073115 /* MainScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CAD572257850CD00073115 /* MainScreen.storyboard */; };
 		41CAD579257850CD00073115 /* MainScreenInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CAD573257850CD00073115 /* MainScreenInterfaces.swift */; };
 		41CAD57A257850CD00073115 /* MainScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41CAD574257850CD00073115 /* MainScreenPresenter.swift */; };
@@ -194,6 +195,7 @@
 		41AB727D257C6DF800AAB062 /* SF-Pro-Rounded-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Rounded-Semibold.otf"; sourceTree = "<group>"; };
 		41AF03E52577F12400754913 /* WelcomeUserViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeUserViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		41AF03ED2577F5E800754913 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		41C2ABDB258AE4600087F205 /* ConnectionState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionState.swift; sourceTree = "<group>"; };
 		41CAD572257850CD00073115 /* MainScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainScreen.storyboard; sourceTree = "<group>"; };
 		41CAD573257850CD00073115 /* MainScreenInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenInterfaces.swift; sourceTree = "<group>"; };
 		41CAD574257850CD00073115 /* MainScreenPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenPresenter.swift; sourceTree = "<group>"; };
@@ -434,6 +436,7 @@
 		415BA20E2579F25900EB3D68 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				41C2ABDA258AE4220087F205 /* Enums */,
 				4141C63B2583BE0A00405EA2 /* API */,
 				41751E642582585200F2918D /* Protocols */,
 				415BA20F2579F26200EB3D68 /* Models */,
@@ -554,6 +557,14 @@
 				41AB726F257BE7A400AAB062 /* CounterTableViewCell.xib */,
 			);
 			path = CellPrototypes;
+			sourceTree = "<group>";
+		};
+		41C2ABDA258AE4220087F205 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				41C2ABDB258AE4600087F205 /* ConnectionState.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		41CAD5712578509B00073115 /* MainScreen */ = {
@@ -1000,6 +1011,7 @@
 				41988E752577E8E100BE9966 /* UIStoryboardExtension.swift in Sources */,
 				41F24C2C25759C2F003B4CEE /* AppDelegate.swift in Sources */,
 				417A832C25761E5800794AA1 /* RoundedButton.swift in Sources */,
+				41C2ABDC258AE4600087F205 /* ConnectionState.swift in Sources */,
 				41988E882577E92B00BE9966 /* WelcomeUserWireframe.swift in Sources */,
 				41CAD579257850CD00073115 /* MainScreenInterfaces.swift in Sources */,
 				411A79622583D2D900922C6F /* CounterService.swift in Sources */,

@@ -33,6 +33,8 @@ protocol MainScreenViewInterface: ViewInterface {
     func endTableViewRefreshing()
     func reloadTableView()
     func updateCountersInformation()
+    func updateReachableStatus()
+    func updateNotReachableStatus()
 }
 
 protocol MainScreenPresenterInterface: PresenterInterface {
@@ -51,4 +53,8 @@ protocol MainScreenInteractorInterface: InteractorInterface {
     func decrementCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
     func addCounter(title: String, completion: @escaping CounterService.CountersDataResponse)
     func deleteCounter(byId id: String, completion: @escaping CounterService.CountersDataResponse)
+    func startNetworkMonitoring(
+        onReachableClosure: @escaping (() -> Void),
+        onNotReachableClosure : @escaping (() -> Void)
+    )
 }

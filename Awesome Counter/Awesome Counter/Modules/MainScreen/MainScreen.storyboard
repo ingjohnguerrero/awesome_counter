@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -99,7 +99,7 @@
                                             <constraint firstAttribute="height" constant="1" id="2ar-Bu-X8n"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KO0-0v-Oeb">
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KO0-0v-Oeb" userLabel="Right Buttons stack">
                                         <rect key="frame" x="374" y="9" width="26" height="26"/>
                                         <subviews>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4WS-DS-BBg">
@@ -135,31 +135,47 @@
                                         <color key="textColor" name="quaternaryLabel"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6l-iq-Aza">
-                                        <rect key="frame" x="19" y="9" width="26" height="26"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IiJ-Y8-O9G" userLabel="Left Buttons Stack">
+                                        <rect key="frame" x="19" y="9" width="22.666666666666671" height="26"/>
+                                        <subviews>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6l-iq-Aza">
+                                                <rect key="frame" x="0.0" y="0.0" width="26" height="26"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="d6l-iq-Aza" secondAttribute="height" multiplier="1:1" id="0s8-I5-zhm"/>
+                                                    <constraint firstAttribute="height" constant="26" id="F7d-ix-Hg8"/>
+                                                </constraints>
+                                                <color key="tintColor" name="secondaryLabel"/>
+                                                <state key="normal" image="trash" catalog="system"/>
+                                                <connections>
+                                                    <action selector="onDeleteButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="WA3-x1-lmW"/>
+                                                </connections>
+                                            </button>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wifi" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Hxx-Wv-C9q">
+                                                <rect key="frame" x="0.0" y="3.9999999999999609" width="22.666666666666668" height="18.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Hxx-Wv-C9q" secondAttribute="height" multiplier="1:1" id="N0E-vU-RWK"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="d6l-iq-Aza" secondAttribute="height" multiplier="1:1" id="0s8-I5-zhm"/>
-                                            <constraint firstAttribute="height" constant="26" id="F7d-ix-Hg8"/>
+                                            <constraint firstAttribute="height" constant="26" id="fAk-Jq-NvO"/>
                                         </constraints>
-                                        <color key="tintColor" name="secondaryLabel"/>
-                                        <state key="normal" image="trash" catalog="system"/>
-                                        <connections>
-                                            <action selector="onDeleteButtonTapped:" destination="zIc-eW-6fX" eventType="touchUpInside" id="WA3-x1-lmW"/>
-                                        </connections>
-                                    </button>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Zhm-TD-bUi" secondAttribute="trailing" id="1f3-fg-k3U"/>
+                                    <constraint firstItem="8q6-u4-Zsd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="IiJ-Y8-O9G" secondAttribute="trailing" constant="10" id="5JJ-j7-ykf"/>
+                                    <constraint firstItem="IiJ-Y8-O9G" firstAttribute="leading" secondItem="aXh-al-YpV" secondAttribute="leading" constant="19" id="7E4-oc-Jff"/>
                                     <constraint firstAttribute="height" constant="60" id="7Uc-zf-hLO"/>
+                                    <constraint firstItem="IiJ-Y8-O9G" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="9" id="Avp-iF-6E2"/>
                                     <constraint firstItem="8q6-u4-Zsd" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="13" id="CvM-gZ-WaL"/>
                                     <constraint firstItem="Zhm-TD-bUi" firstAttribute="leading" secondItem="aXh-al-YpV" secondAttribute="leading" id="DHR-M9-hqK"/>
                                     <constraint firstAttribute="trailing" secondItem="KO0-0v-Oeb" secondAttribute="trailing" constant="14" id="Luw-wu-iRP"/>
-                                    <constraint firstItem="d6l-iq-Aza" firstAttribute="leading" secondItem="aXh-al-YpV" secondAttribute="leading" constant="19" id="RvF-ep-XC4"/>
                                     <constraint firstItem="KO0-0v-Oeb" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="9" id="Taq-Gj-EDc"/>
                                     <constraint firstItem="Zhm-TD-bUi" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" id="dyj-1p-Ix7"/>
+                                    <constraint firstItem="KO0-0v-Oeb" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8q6-u4-Zsd" secondAttribute="trailing" constant="10" id="j2L-kX-ayA"/>
                                     <constraint firstItem="8q6-u4-Zsd" firstAttribute="centerX" secondItem="aXh-al-YpV" secondAttribute="centerX" id="o3X-2M-doc"/>
-                                    <constraint firstItem="d6l-iq-Aza" firstAttribute="top" secondItem="aXh-al-YpV" secondAttribute="top" constant="9" id="suu-xF-d4z"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HNw-a3-Ho5">
@@ -251,6 +267,7 @@
                     <connections>
                         <outlet property="activityIndicatorView" destination="Pv8-Us-D39" id="zdj-rf-oV8"/>
                         <outlet property="addButton" destination="6cn-Hb-s65" id="88p-1S-5G6"/>
+                        <outlet property="connectionStatusImageView" destination="Hxx-Wv-C9q" id="htt-pH-kv6"/>
                         <outlet property="countersInformationLabel" destination="8q6-u4-Zsd" id="Mzo-CD-JcQ"/>
                         <outlet property="dataProvider" destination="YYR-vE-7eG" id="Zjh-wY-4Oj"/>
                         <outlet property="deleteButton" destination="d6l-iq-Aza" id="iBM-1M-mQH"/>
@@ -273,6 +290,7 @@
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="trash" catalog="system" width="121" height="128"/>
+        <image name="wifi" catalog="system" width="128" height="91"/>
         <namedColor name="UIBackground">
             <color red="0.53299999237060547" green="0.54500001668930054" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
